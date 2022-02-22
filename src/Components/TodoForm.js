@@ -11,7 +11,7 @@ export default class TodoForm extends Component {
             value={this.props.inputTodo}
             onChange={this.props.setInputTodo}
           />
-          <input type="submit" value="add" />
+          <input type="submit" value={this.props.edit ? "Update" : "Add"} />
         </form>
       </div>
     );
