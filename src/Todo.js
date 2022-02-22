@@ -27,6 +27,11 @@ export default class Todo extends Component {
     this.setState({ inputTodo: "" });
   };
 
+  deleteTodo = ({ id }) => {
+    const deleteTodo = this.state.todos.filter((todo) => todo.id !== id);
+    this.setState({ todos: deleteTodo });
+  };
+
   render() {
     return (
       <div>
@@ -35,7 +40,7 @@ export default class Todo extends Component {
           setInputTodo={this.setInputTodo}
           addTodo={this.addTodo}
         />
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} deleteTodo={this.deleteTodo} />
       </div>
     );
   }

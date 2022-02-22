@@ -13,6 +13,9 @@ export default class TodoList extends Component {
                 onChange={(e) => e.preventDefault()}
                 disabled
               />
+              <button onClick={() => this.props.deleteTodo(todo)}>
+                Delete
+              </button>
             </li>
           ))}
         </ol>
