@@ -16,6 +16,7 @@ export default class Todo extends Component {
       selectValue: "all",
       show: false,
     };
+    this.refInputTodo = React.createRef();
   }
 
   setInputTodo = (e) => {
@@ -55,6 +56,7 @@ export default class Todo extends Component {
     const findTodo = this.state.todos.find((todo) => todo.id === id);
     this.setState({ edit: findTodo });
     this.setState({ inputTodo: findTodo.title });
+    this.refInputTodo.current.focus();
   };
 
   updateTodo = (id, title, complete) => {
@@ -108,6 +110,13 @@ export default class Todo extends Component {
     }
   };
 
+  componentDidMount() {
+    this.refInputTodo.current.focus();
+  }
+  componentDidUpdate() {
+    if (this.state.inputTodo === "") this.refInputTodo.current.focus();
+  }
+
   render() {
     return (
       <div>
@@ -116,6 +125,7 @@ export default class Todo extends Component {
           setInputTodo={this.setInputTodo}
           addTodo={this.addTodo}
           edit={this.state.edit}
+          refInputTodo={this.refInputTodo}
         />
         <TodoFilterForm
           selectValue={this.state.selectValue}
