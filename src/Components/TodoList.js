@@ -17,6 +17,9 @@ export default class TodoList extends Component {
                 Delete
               </button>
               <button onClick={() => this.props.editTodo(todo)}>Edit</button>
+              <button onClick={() => this.props.changeCompleteTodo(todo)}>
+                {todo.complete ? "Complete" : "UnComplete"}
+              </button>
             </li>
           ))}
         </ol>

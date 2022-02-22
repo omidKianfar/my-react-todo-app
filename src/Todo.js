@@ -56,6 +56,13 @@ export default class Todo extends Component {
     this.setState({ inputTodo: "" });
   };
 
+  changeCompleteTodo = ({ id }) => {
+    const changeComplete = this.state.todos.map((todo) =>
+      todo.id === id ? { ...todo, complete: !todo.complete } : todo
+    );
+    this.setState({ todos: changeComplete });
+  };
+
   render() {
     return (
       <div>
@@ -69,6 +76,7 @@ export default class Todo extends Component {
           todos={this.state.todos}
           deleteTodo={this.deleteTodo}
           editTodo={this.editTodo}
+          changeCompleteTodo={this.changeCompleteTodo}
         />
       </div>
     );
