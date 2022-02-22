@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import TodoForm from "./Components/TodoForm";
 import TodoList from "./Components/TodoList";
+import TodoFilterForm from "./Components/TodoFilterForm";
+import TodoFilterList from "./Components/TodoFilterList";
 
 export default class Todo extends Component {
   constructor(props) {
@@ -10,6 +12,9 @@ export default class Todo extends Component {
       inputTodo: "",
       todos: [],
       edit: "",
+      filters: [],
+      selectValue: "all",
+      show: false,
     };
   }
 
@@ -39,6 +44,11 @@ export default class Todo extends Component {
   deleteTodo = ({ id }) => {
     const deleteTodo = this.state.todos.filter((todo) => todo.id !== id);
     this.setState({ todos: deleteTodo });
+
+    const deleteFilterTodo = this.state.filters.filter(
+      (todo) => todo.id !== id
+    );
+    this.setState({ filters: deleteFilterTodo });
   };
 
   editTodo = ({ id }) => {
@@ -52,6 +62,12 @@ export default class Todo extends Component {
       todo.id === id ? { id, title, complete } : todo
     );
     this.setState({ todos: newTodo });
+
+    const newFilterTodo = this.state.filters.map((todo) =>
+      todo.id === id ? { id, title, complete } : todo
+    );
+    this.setState({ filters: newFilterTodo });
+
     this.setState({ edit: "" });
     this.setState({ inputTodo: "" });
   };
@@ -61,6 +77,35 @@ export default class Todo extends Component {
       todo.id === id ? { ...todo, complete: !todo.complete } : todo
     );
     this.setState({ todos: changeComplete });
+
+    const changeFilterComplete = this.state.filters.map((todo) =>
+      todo.id === id ? { ...todo, complete: !todo.complete } : todo
+    );
+    this.setState({ filters: changeFilterComplete });
+  };
+
+  changeSelectValue = (e) => {
+    this.setState({ selectValue: e.target.value });
+  };
+
+  filterTodos = (selectValue) => {
+    this.setState({ show: true });
+    switch (selectValue) {
+      case "all":
+        this.setState({ show: false });
+        break;
+      case "true":
+        const filterCompleteTrue = this.state.todos.filter(
+          (todo) => todo.complete === true
+        );
+        this.setState({ filters: filterCompleteTrue });
+        break;
+      case "false":
+        const filterCompleteFalse = this.state.todos.filter(
+          (todo) => todo.complete === false
+        );
+        this.setState({ filters: filterCompleteFalse });
+    }
   };
 
   render() {
@@ -72,12 +117,28 @@ export default class Todo extends Component {
           addTodo={this.addTodo}
           edit={this.state.edit}
         />
-        <TodoList
-          todos={this.state.todos}
-          deleteTodo={this.deleteTodo}
-          editTodo={this.editTodo}
-          changeCompleteTodo={this.changeCompleteTodo}
+        <TodoFilterForm
+          selectValue={this.state.selectValue}
+          changeSelectValue={this.changeSelectValue}
+          filterTodos={this.filterTodos}
         />
+        {!this.state.show ? (
+          <TodoList
+            todos={this.state.todos}
+            deleteTodo={this.deleteTodo}
+            editTodo={this.editTodo}
+            changeCompleteTodo={this.changeCompleteTodo}
+          />
+        ) : (
+          <TodoFilterList
+            filters={this.state.filters}
+            deleteTodo={this.deleteTodo}
+            editTodo={this.editTodo}
+            changeCompleteTodo={this.changeCompleteTodo}
+            selectValue={this.state.selectValue}
+            filterTodos={this.filterTodos}
+          />
+        )}
       </div>
     );
   }
