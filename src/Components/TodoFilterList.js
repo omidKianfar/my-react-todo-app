@@ -1,55 +1,50 @@
-import React, { Component, memo } from "react";
+import React, { useState, useEffect } from "react";
 
-export default memo(
-  class TodoFilterList extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        changeComplete: false,
-      };
+import Auxx from "../assistant/Auxx/Auxx";
+
+const TodoFilterList = ({
+  filters,
+  filterTodos,
+  deleteTodo,
+  editTodo,
+  changeCompleteTodo,
+  selectValue,
+}) => {
+  const [changeComplete, setChangeComplete] = useState(false);
+
+  useEffect(() => {
+    if (changeComplete) {
+      filterTodos(selectValue);
+      setChangeComplete(false);
     }
+  }, [selectValue, changeComplete]);
 
-    componentDidUpdate() {
-      const changeComplete = this.state.changeComplete;
-      const selectValue = this.props.selectValue;
+  const changeCompleteFilters = (todo) => {
+    changeCompleteTodo(todo);
+    setChangeComplete(true);
+  };
 
-      if (changeComplete) {
-        this.props.filterTodos(selectValue);
-        this.setState({ changeComplete: false });
-      }
-    }
+  return (
+    <Auxx>
+      <ol>
+        {filters.map((todo) => (
+          <li key={todo.id}>
+            <input
+              type="text"
+              value={todo.title}
+              onChange={(e) => e.preventDefault()}
+              disabled
+            />
+            <button onClick={() => deleteTodo(todo)}>Delete</button>
+            <button onClick={() => editTodo(todo)}>Edit</button>
+            <button onClick={() => changeCompleteFilters(todo)}>
+              {todo.complete ? "Complete" : "UnComplete"}
+            </button>
+          </li>
+        ))}
+      </ol>
+    </Auxx>
+  );
+};
 
-    changeCompleteFilters = (todo) => {
-      const changeCompleteTodo = this.props.changeCompleteTodo;
-
-      changeCompleteTodo(todo);
-      this.setState({ changeComplete: true });
-    };
-
-    render() {
-      const { filters, deleteTodo, editTodo } = this.props;
-
-      return (
-        <div>
-          <ol>
-            {filters.map((todo) => (
-              <li key={todo.id}>
-                <input
-                  type="text"
-                  value={todo.title}
-                  onChange={(e) => e.preventDefault()}
-                  disabled
-                />
-                <button onClick={() => deleteTodo(todo)}>Delete</button>
-                <button onClick={() => editTodo(todo)}>Edit</button>
-                <button onClick={() => this.changeCompleteFilters(todo)}>
-                  {todo.complete ? "Complete" : "UnComplete"} Change
-                </button>
-              </li>
-            ))}
-          </ol>
-        </div>
-      );
-    }
-  }
-);
+export default TodoFilterList;

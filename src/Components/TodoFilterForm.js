@@ -1,28 +1,25 @@
-import React, { Component, memo } from "react";
+import React, { useEffect } from "react";
 
-export default memo(
-  class TodoFilterForm extends Component {
-    componentDidUpdate() {
-      const { selectValue, filterTodos } = this.props;
+import Auxx from "../assistant/Auxx/Auxx";
 
-      if (selectValue) {
-        filterTodos(selectValue);
-      }
+const TodoFilterForm = ({ selectValue, setSelectValue, filterTodos }) => {
+  useEffect(() => {
+    if (selectValue) {
+      filterTodos(selectValue);
     }
-    render() {
-      const { selectValue, filterTodos, changeSelectValue } = this.props;
+  }, [selectValue]);
 
-      return (
-        <div>
-          <form onSubmit={() => filterTodos(selectValue)}>
-            <select onChange={changeSelectValue}>
-              <option value="all">all</option>
-              <option value="true">Completed</option>
-              <option value="false">UnComplete</option>
-            </select>
-          </form>
-        </div>
-      );
-    }
-  }
-);
+  return (
+    <Auxx>
+      <form onSubmit={() => filterTodos(selectValue)}>
+        <select onChange={(e) => setSelectValue(e.target.value)}>
+          <option value="all">all</option>
+          <option value="true">Completed</option>
+          <option value="false">UnComplete</option>
+        </select>
+      </form>
+    </Auxx>
+  );
+};
+
+export default TodoFilterForm;

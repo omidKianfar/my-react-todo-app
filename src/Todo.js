@@ -1,171 +1,122 @@
-import React, { Component } from "react";
+import React, { useState, createRef, useEffect } from "react";
 
 import TodoForm from "./Components/TodoForm";
 import TodoList from "./Components/TodoList";
 import TodoFilterForm from "./Components/TodoFilterForm";
 import TodoFilterList from "./Components/TodoFilterList";
-export default class Todo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputTodo: "",
-      todos: [],
-      edit: "",
-      filters: [],
-      selectValue: "all",
-      show: false,
-    };
-    this.refInputTodo = React.createRef();
-  }
+import Auxx from "./assistant/Auxx/Auxx";
 
-  setInputTodo = (e) => {
-    const value = e.target.value;
-    this.setState({ inputTodo: value });
-  };
+const Todo = () => {
+  // state -----------------------------------------------------------
+  const [inputTodo, setInputTodo] = useState("");
+  const [todos, setTodos] = useState([]);
+  const [edit, setEdit] = useState("");
+  const [filters, setFilters] = useState([]);
+  const [selectValue, setSelectValue] = useState("all");
+  const [show, setShow] = useState(true);
 
-  addTodo = (e) => {
-    e.preventDefault();
+  // hocs --------------------------------------------------------------
+  useEffect(() => {
+    refInputTodo.current.focus();
+  }, []);
 
-    const { inputTodo, edit, todos } = this.state;
-    if (!edit) {
-      this.setState({
-        todos: [
-          ...todos,
-          { id: Math.random(), title: inputTodo, complete: false },
-        ],
-      });
-      this.setState({ inputTodo: "" });
-    } else {
-      const { id, complete } = edit;
-      this.updateTodo(id, inputTodo, complete);
-    }
-  };
+  useEffect(() => {
+    if (inputTodo === "") refInputTodo.current.focus();
+  });
 
-  deleteTodo = ({ id }) => {
-    const { todos, filters } = this.state;
+  // func -----------------------------------------------------------
 
+  // delete --------------------------
+  const deleteTodo = ({ id }) => {
     const deleteTodo = todos.filter((todo) => todo.id !== id);
-    this.setState({ todos: deleteTodo });
-
-    const deleteFilterTodo = filters.filter((todo) => todo.id !== id);
-    this.setState({ filters: deleteFilterTodo });
+    setTodos(deleteTodo);
+    setFilters(deleteTodo);
   };
 
-  editTodo = ({ id }) => {
-    const todos = this.state.todos;
-
+  // edit ---------------------------
+  const editTodo = ({ id }) => {
     const findTodo = todos.find((todo) => todo.id === id);
-    this.setState({ edit: findTodo });
-    this.setState({ inputTodo: findTodo.title });
-
-    this.refInputTodo.current.focus();
+    setEdit(findTodo);
+    setInputTodo(findTodo.title);
+    focus();
   };
 
-  updateTodo = (id, title, complete) => {
-    const { todos, filters } = this.state;
+  // focus --------------------------
+  const refInputTodo = createRef();
+  const focus = () => refInputTodo.current.focus();
 
-    const newTodo = todos.map((todo) =>
-      todo.id === id ? { id, title, complete } : todo
-    );
-    this.setState({ todos: newTodo });
-
-    const newFilterTodo = filters.map((todo) =>
-      todo.id === id ? { id, title, complete } : todo
-    );
-    this.setState({ filters: newFilterTodo });
-
-    this.setState({ edit: "" });
-    this.setState({ inputTodo: "" });
-  };
-
-  changeCompleteTodo = ({ id }) => {
-    const { todos, filters } = this.state;
-
+  // change complete -----------------
+  const changeCompleteTodo = ({ id }) => {
     const changeComplete = todos.map((todo) =>
       todo.id === id ? { ...todo, complete: !todo.complete } : todo
     );
-    this.setState({ todos: changeComplete });
-
-    const changeFilterComplete = filters.map((todo) =>
-      todo.id === id ? { ...todo, complete: !todo.complete } : todo
-    );
-    this.setState({ filters: changeFilterComplete });
+    setTodos(changeComplete);
   };
 
-  changeSelectValue = (e) => {
-    const value = e.target.value;
-    this.setState({ selectValue: value });
-  };
-
-  filterTodos = (selectValue) => {
-    const todos = this.state.todos;
-
-    this.setState({ show: true });
-
+  // filter todos ---------------------
+  const filterTodos = (selectValue) => {
     switch (selectValue) {
       case "all":
-        this.setState({ show: false });
+        setShow(true);
         break;
 
       case "true":
         const filterCompleteTrue = todos.filter(
           (todo) => todo.complete === true
         );
-        this.setState({ filters: filterCompleteTrue });
+        setFilters(filterCompleteTrue);
+        setShow(false);
         break;
 
       case "false":
         const filterCompleteFalse = todos.filter(
           (todo) => todo.complete === false
         );
-        this.setState({ filters: filterCompleteFalse });
+        setFilters(filterCompleteFalse);
+        setShow(false);
         break;
     }
   };
 
-  componentDidMount() {
-    this.refInputTodo.current.focus();
-  }
+  return (
+    <Auxx>
+      {/* forms */}
+      <TodoForm
+        inputTodo={inputTodo}
+        setInputTodo={setInputTodo}
+        todos={todos}
+        setTodos={setTodos}
+        setFilters={setFilters}
+        edit={edit}
+        setEdit={setEdit}
+        refInputTodo={refInputTodo}
+      />
+      <TodoFilterForm
+        selectValue={selectValue}
+        setSelectValue={setSelectValue}
+        filterTodos={filterTodos}
+      />
 
-  componentDidUpdate() {
-    const inputTodo = this.state.inputTodo;
-    if (inputTodo === "") this.refInputTodo.current.focus();
-  }
-
-  render() {
-    const { inputTodo, edit, todos, selectValue, filters } = this.state;
-    return (
-      <div>
-        <TodoForm
-          inputTodo={inputTodo}
-          setInputTodo={this.setInputTodo}
-          addTodo={this.addTodo}
-          edit={edit}
-          refInputTodo={this.refInputTodo}
+      {/* lists */}
+      {show ? (
+        <TodoList
+          todos={todos}
+          editTodo={editTodo}
+          deleteTodo={deleteTodo}
+          changeCompleteTodo={changeCompleteTodo}
         />
-        <TodoFilterForm
+      ) : (
+        <TodoFilterList
+          filters={filters}
+          filterTodos={filterTodos}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
+          changeCompleteTodo={changeCompleteTodo}
           selectValue={selectValue}
-          changeSelectValue={this.changeSelectValue}
-          filterTodos={this.filterTodos}
         />
-        {!this.state.show ? (
-          <TodoList
-            todos={todos}
-            deleteTodo={this.deleteTodo}
-            editTodo={this.editTodo}
-            changeCompleteTodo={this.changeCompleteTodo}
-          />
-        ) : (
-          <TodoFilterList
-            filters={filters}
-            deleteTodo={this.deleteTodo}
-            editTodo={this.editTodo}
-            changeCompleteTodo={this.changeCompleteTodo}
-            selectValue={selectValue}
-            filterTodos={this.filterTodos}
-          />
-        )}
-      </div>
-    );
-  }
-}
+      )}
+    </Auxx>
+  );
+};
+
+export default Todo;
