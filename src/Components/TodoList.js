@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-
 export default class TodoList extends Component {
   render() {
+    const { todos, deleteTodo, editTodo, changeCompleteTodo } = this.props;
     return (
       <div>
         <ol>
-          {this.props.todos.map((todo) => (
+          {todos.map((todo) => (
             <li key={todo.id}>
               <input
                 type="text"
@@ -13,11 +13,9 @@ export default class TodoList extends Component {
                 onChange={(e) => e.preventDefault()}
                 disabled
               />
-              <button onClick={() => this.props.deleteTodo(todo)}>
-                Delete
-              </button>
-              <button onClick={() => this.props.editTodo(todo)}>Edit</button>
-              <button onClick={() => this.props.changeCompleteTodo(todo)}>
+              <button onClick={() => deleteTodo(todo)}>Delete</button>
+              <button onClick={() => editTodo(todo)}>Edit</button>
+              <button onClick={() => changeCompleteTodo(todo)}>
                 {todo.complete ? "Complete" : "UnComplete"}
               </button>
             </li>

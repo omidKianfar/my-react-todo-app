@@ -10,22 +10,29 @@ export default memo(
     }
 
     componentDidUpdate() {
-      if (this.state.changeComplete) {
-        this.props.filterTodos(this.props.selectValue);
+      const changeComplete = this.state.changeComplete;
+      const selectValue = this.props.selectValue;
+
+      if (changeComplete) {
+        this.props.filterTodos(selectValue);
         this.setState({ changeComplete: false });
       }
     }
 
     changeCompleteFilters = (todo) => {
-      this.props.changeCompleteTodo(todo);
+      const changeCompleteTodo = this.props.changeCompleteTodo;
+
+      changeCompleteTodo(todo);
       this.setState({ changeComplete: true });
     };
 
     render() {
+      const { filters, deleteTodo, editTodo } = this.props;
+
       return (
         <div>
           <ol>
-            {this.props.filters.map((todo) => (
+            {filters.map((todo) => (
               <li key={todo.id}>
                 <input
                   type="text"
@@ -33,10 +40,8 @@ export default memo(
                   onChange={(e) => e.preventDefault()}
                   disabled
                 />
-                <button onClick={() => this.props.deleteTodo(todo)}>
-                  Delete
-                </button>
-                <button onClick={() => this.props.editTodo(todo)}>Edit</button>
+                <button onClick={() => deleteTodo(todo)}>Delete</button>
+                <button onClick={() => editTodo(todo)}>Edit</button>
                 <button onClick={() => this.changeCompleteFilters(todo)}>
                   {todo.complete ? "Complete" : "UnComplete"} Change
                 </button>

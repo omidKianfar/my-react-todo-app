@@ -2,17 +2,18 @@ import React, { Component } from "react";
 
 export default class TodoForm extends Component {
   render() {
+    const { addTodo, inputTodo, setInputTodo, refInputTodo, edit } = this.props;
     return (
       <div>
-        <form onSubmit={this.props.addTodo}>
+        <form onSubmit={addTodo}>
           <input
             type="text"
             placeholder="Enter Todo"
-            value={this.props.inputTodo}
-            onChange={this.props.setInputTodo}
-            ref={this.props.refInputTodo}
+            value={inputTodo}
+            onChange={setInputTodo}
+            ref={refInputTodo}
           />
-          <input type="submit" value={this.props.edit ? "Update" : "Add"} />
+          <input type="submit" value={edit ? "Update" : "Add"} />
         </form>
       </div>
     );
