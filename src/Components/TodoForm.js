@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
+import PropTypes from "prop-types";
 
-import Auxx from "../assistant/Auxx/Auxx";
+import Auxx from "../Tools/Auxx";
+import { todoContext } from "../hocs/Context";
 
-const TodoForm = ({
-  inputTodo,
-  setInputTodo,
-  todos,
-  setTodos,
-  setFilters,
-  edit,
-  setEdit,
-  refInputTodo,
-}) => {
+const TodoForm = () => {
+  // usecontext
+  const {
+    inputTodo,
+    setInputTodo,
+    todos,
+    setTodos,
+    setFilters,
+    edit,
+    setEdit,
+    defaultRef,
+    filters,
+  } = useContext(todoContext);
+
+  // add todo ----------------------------------------
   const addTodo = (e) => {
     e.preventDefault();
-    console.log(inputTodo);
 
     if (!edit) {
       setTodos([
@@ -22,21 +28,28 @@ const TodoForm = ({
         { id: Math.random(), title: inputTodo, complete: false },
       ]);
       setInputTodo("");
-      console.log(todos);
     } else {
       const { id, complete } = edit;
       updateTodo(id, inputTodo, complete);
+      updateFilterTodo(id, inputTodo, complete);
+      setEdit(null);
+      setInputTodo("");
     }
   };
 
+  // update todo --------------------------------
   const updateTodo = (id, title, complete) => {
     const newTodo = todos.map((todo) =>
       todo.id === id ? { id, title, complete } : todo
     );
     setTodos(newTodo);
-    setFilters(newTodo);
-    setEdit("");
-    setInputTodo("");
+  };
+
+  const updateFilterTodo = (id, title, complete) => {
+    const newFilterTodo = filters.map((todo) =>
+      todo.id === id ? { id, title, complete } : todo
+    );
+    setFilters(newFilterTodo);
   };
 
   return (
@@ -47,7 +60,7 @@ const TodoForm = ({
           placeholder="Enter Todo"
           value={inputTodo}
           onChange={(e) => setInputTodo(e.target.value)}
-          ref={refInputTodo}
+          ref={defaultRef}
         />
         <input type="submit" value={edit ? "Update" : "Add"} />
       </form>
@@ -55,3 +68,14 @@ const TodoForm = ({
   );
 };
 export default TodoForm;
+
+TodoForm.propTypes = {
+  inputTodo: PropTypes.string,
+  setInputTodo: PropTypes.func,
+  todos: PropTypes.array,
+  setTodos: PropTypes.func,
+  setFilters: PropTypes.func,
+  edit: PropTypes.object,
+  setEdit: PropTypes.func,
+  filters: PropTypes.array,
+};

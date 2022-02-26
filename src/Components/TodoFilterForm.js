@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import PropTypes from "prop-types";
 
-import Auxx from "../assistant/Auxx/Auxx";
+import Auxx from "../Tools/Auxx";
+import { todoContext } from "../hocs/Context";
 
-const TodoFilterForm = ({ selectValue, setSelectValue, filterTodos }) => {
+const TodoFilterForm = () => {
+  const { selectValue, setSelectValue, filterTodos } = useContext(todoContext);
+
   useEffect(() => {
     if (selectValue) {
       filterTodos(selectValue);
@@ -23,3 +27,9 @@ const TodoFilterForm = ({ selectValue, setSelectValue, filterTodos }) => {
 };
 
 export default TodoFilterForm;
+
+TodoFilterForm.propTypes = {
+  selectValue: PropTypes.string,
+  setSelectValue: PropTypes.func,
+  filterTodos: PropTypes.func,
+};

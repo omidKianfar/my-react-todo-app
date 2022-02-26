@@ -1,36 +1,47 @@
-import React, { useState, createRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import TodoForm from "./Components/TodoForm";
 import TodoList from "./Components/TodoList";
 import TodoFilterForm from "./Components/TodoFilterForm";
 import TodoFilterList from "./Components/TodoFilterList";
-import Auxx from "./assistant/Auxx/Auxx";
+import Auxx from "./Tools/Auxx";
+import { Focus } from "./Tools/Focus";
+import { todoContext } from "./hocs/Context";
 
-const Todo = () => {
+const Layout = () => {
+  // local storage ---------------------------------------------------
+  const initialState = JSON.parse(localStorage.getItem("todos")) || [];
+
   // state -----------------------------------------------------------
   const [inputTodo, setInputTodo] = useState("");
-  const [todos, setTodos] = useState([]);
-  const [edit, setEdit] = useState("");
+  const [todos, setTodos] = useState(initialState);
+  const [edit, setEdit] = useState(null);
   const [filters, setFilters] = useState([]);
   const [selectValue, setSelectValue] = useState("all");
   const [show, setShow] = useState(true);
+  const defaultRef = Focus(inputTodo);
 
-  // hocs --------------------------------------------------------------
+  // hocs -----------------------------------------------------------
   useEffect(() => {
-    refInputTodo.current.focus();
-  }, []);
-
-  useEffect(() => {
-    if (inputTodo === "") refInputTodo.current.focus();
-  });
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   // func -----------------------------------------------------------
 
   // delete --------------------------
-  const deleteTodo = ({ id }) => {
+  const deleteTodo = (id) => {
     const deleteTodo = todos.filter((todo) => todo.id !== id);
     setTodos(deleteTodo);
-    setFilters(deleteTodo);
+  };
+
+  const deleteFilterTodo = (id) => {
+    const deleteFilterTodo = filters.filter((todo) => todo.id !== id);
+    setFilters(deleteFilterTodo);
+  };
+
+  const deleteTodoHandler = ({ id }) => {
+    deleteTodo(id);
+    deleteFilterTodo(id);
   };
 
   // edit ---------------------------
@@ -38,12 +49,11 @@ const Todo = () => {
     const findTodo = todos.find((todo) => todo.id === id);
     setEdit(findTodo);
     setInputTodo(findTodo.title);
-    focus();
+    focusEdit();
   };
 
   // focus --------------------------
-  const refInputTodo = createRef();
-  const focus = () => refInputTodo.current.focus();
+  const focusEdit = () => defaultRef.current.focus();
 
   // change complete -----------------
   const changeCompleteTodo = ({ id }) => {
@@ -80,43 +90,34 @@ const Todo = () => {
 
   return (
     <Auxx>
-      {/* forms */}
-      <TodoForm
-        inputTodo={inputTodo}
-        setInputTodo={setInputTodo}
-        todos={todos}
-        setTodos={setTodos}
-        setFilters={setFilters}
-        edit={edit}
-        setEdit={setEdit}
-        refInputTodo={refInputTodo}
-      />
-      <TodoFilterForm
-        selectValue={selectValue}
-        setSelectValue={setSelectValue}
-        filterTodos={filterTodos}
-      />
+      <todoContext.Provider
+        value={{
+          inputTodo,
+          setInputTodo,
+          todos,
+          setTodos,
+          setFilters,
+          edit,
+          setEdit,
+          defaultRef,
+          selectValue,
+          setSelectValue,
+          filterTodos,
+          editTodo,
+          deleteTodoHandler,
+          changeCompleteTodo,
+          filters,
+          show,
+        }}
+      >
+        {/* forms */}
+        <TodoForm />
+        <TodoFilterForm />
 
-      {/* lists */}
-      {show ? (
-        <TodoList
-          todos={todos}
-          editTodo={editTodo}
-          deleteTodo={deleteTodo}
-          changeCompleteTodo={changeCompleteTodo}
-        />
-      ) : (
-        <TodoFilterList
-          filters={filters}
-          filterTodos={filterTodos}
-          deleteTodo={deleteTodo}
-          editTodo={editTodo}
-          changeCompleteTodo={changeCompleteTodo}
-          selectValue={selectValue}
-        />
-      )}
+        {/* lists */}
+        {show ? <TodoList /> : <TodoFilterList />}
+      </todoContext.Provider>
     </Auxx>
   );
 };
-
-export default Todo;
+export default Layout;

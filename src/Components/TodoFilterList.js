@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import PropTypes from "prop-types";
 
-import Auxx from "../assistant/Auxx/Auxx";
+import Auxx from "../Tools/Auxx";
+import { todoContext } from "../hocs/Context";
 
-const TodoFilterList = ({
-  filters,
-  filterTodos,
-  deleteTodo,
-  editTodo,
-  changeCompleteTodo,
-  selectValue,
-}) => {
+const TodoFilterList = () => {
+  const {
+    filters,
+    filterTodos,
+    deleteTodoHandler,
+    editTodo,
+    changeCompleteTodo,
+    selectValue,
+  } = useContext(todoContext);
+
   const [changeComplete, setChangeComplete] = useState(false);
 
   useEffect(() => {
@@ -35,10 +39,10 @@ const TodoFilterList = ({
               onChange={(e) => e.preventDefault()}
               disabled
             />
-            <button onClick={() => deleteTodo(todo)}>Delete</button>
+            <button onClick={() => deleteTodoHandler(todo)}>Delete</button>
             <button onClick={() => editTodo(todo)}>Edit</button>
             <button onClick={() => changeCompleteFilters(todo)}>
-              {todo.complete ? "Complete" : "UnComplete"}
+              {todo.complete ? "Complete" : "UnComplete"} change
             </button>
           </li>
         ))}
@@ -48,3 +52,12 @@ const TodoFilterList = ({
 };
 
 export default TodoFilterList;
+
+TodoFilterList.propTypes = {
+  filters: PropTypes.array,
+  filterTodos: PropTypes.func,
+  selectValue: PropTypes.string,
+  editTodo: PropTypes.func,
+  deleteTodoHandler: PropTypes.func,
+  changeCompleteTodo: PropTypes.func,
+};

@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import PropTypes from "prop-types";
 
-import Auxx from "../assistant/Auxx/Auxx";
+import Auxx from "../Tools/Auxx";
+import { todoContext } from "../hocs/Context";
 
-const TodoList = ({ todos, deleteTodo, editTodo, changeCompleteTodo }) => {
+const TodoList = () => {
+  const { todos, deleteTodoHandler, editTodo, changeCompleteTodo } =
+    useContext(todoContext);
   return (
     <Auxx>
       <ol>
@@ -14,7 +18,7 @@ const TodoList = ({ todos, deleteTodo, editTodo, changeCompleteTodo }) => {
               onChange={(e) => e.preventDefault()}
               disabled
             />
-            <button onClick={() => deleteTodo(todo)}>Delete</button>
+            <button onClick={() => deleteTodoHandler(todo)}>Delete</button>
             <button onClick={() => editTodo(todo)}>Edit</button>
             <button onClick={() => changeCompleteTodo(todo)}>
               {todo.complete ? "Complete" : "UnComplete"}
@@ -26,3 +30,10 @@ const TodoList = ({ todos, deleteTodo, editTodo, changeCompleteTodo }) => {
   );
 };
 export default TodoList;
+
+TodoList.propTypes = {
+  todos: PropTypes.array,
+  deleteTodoHandler: PropTypes.func,
+  editTodo: PropTypes.func,
+  changeCompleteTodo: PropTypes.func,
+};
