@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 import Auxx from "../Tools/Auxx";
-import { todoContext } from "../hocs/Context";
+import { todoContext } from "../Hooks/Context";
+import JsonCrud from "../JsonCrud/JsonCrud";
 
 const TodoForm = () => {
   // usecontext
@@ -16,6 +17,7 @@ const TodoForm = () => {
     setEdit,
     defaultRef,
     filters,
+    setLoading,
   } = useContext(todoContext);
 
   // add todo ----------------------------------------
@@ -23,15 +25,21 @@ const TodoForm = () => {
     e.preventDefault();
 
     if (!edit) {
-      setTodos([
-        ...todos,
-        { id: Math.random(), title: inputTodo, complete: false },
-      ]);
+      JsonCrud.createTodoDbJson({
+        id: Math.random(),
+        title: inputTodo,
+        complete: false,
+      });
+
+      setLoading(true);
+
       setInputTodo("");
     } else {
       const { id, complete } = edit;
       updateTodo(id, inputTodo, complete);
       updateFilterTodo(id, inputTodo, complete);
+      updateTodoTitleInDbJson(id, inputTodo, complete);
+
       setEdit(null);
       setInputTodo("");
     }
@@ -52,6 +60,16 @@ const TodoForm = () => {
     setFilters(newFilterTodo);
   };
 
+  const updateTodoTitleInDbJson = (id, title, complete) => {
+    const todoDetailes = {
+      id: id,
+      title: title,
+      complete: complete,
+    };
+
+    JsonCrud.updateTodoDbJson(id, todoDetailes);
+  };
+
   return (
     <Auxx>
       <form onSubmit={addTodo}>
@@ -61,6 +79,7 @@ const TodoForm = () => {
           value={inputTodo}
           onChange={(e) => setInputTodo(e.target.value)}
           ref={defaultRef}
+          required
         />
         <input type="submit" value={edit ? "Update" : "Add"} />
       </form>

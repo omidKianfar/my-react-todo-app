@@ -6,29 +6,31 @@ import TodoFilterForm from "./Components/TodoFilterForm";
 import TodoFilterList from "./Components/TodoFilterList";
 import Auxx from "./Tools/Auxx";
 import { Focus } from "./Tools/Focus";
-import { todoContext } from "./hocs/Context";
+import { todoContext } from "./Hooks/Context";
+import JsonCrud from "./JsonCrud/JsonCrud";
 
 const Layout = () => {
-  // local storage ---------------------------------------------------
-  const initialState = JSON.parse(localStorage.getItem("todos")) || [];
-
   // state -----------------------------------------------------------
   const [inputTodo, setInputTodo] = useState("");
-  const [todos, setTodos] = useState(initialState);
+  const [todos, setTodos] = useState([]);
   const [edit, setEdit] = useState(null);
   const [filters, setFilters] = useState([]);
   const [selectValue, setSelectValue] = useState("all");
   const [show, setShow] = useState(true);
+  const [loading, setLoading] = useState(true);
   const defaultRef = Focus(inputTodo);
 
-  // hocs -----------------------------------------------------------
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+    if (loading === true) {
+      JsonCrud.getAllTodosDbJson(setTodos);
+    }
+    setLoading(false);
+  });
 
   // func -----------------------------------------------------------
 
   // delete --------------------------
+
   const deleteTodo = (id) => {
     const deleteTodo = todos.filter((todo) => todo.id !== id);
     setTodos(deleteTodo);
@@ -42,6 +44,7 @@ const Layout = () => {
   const deleteTodoHandler = ({ id }) => {
     deleteTodo(id);
     deleteFilterTodo(id);
+    JsonCrud.deleteTodoDbJson(id);
   };
 
   // edit ---------------------------
@@ -52,15 +55,28 @@ const Layout = () => {
     focusEdit();
   };
 
-  // focus --------------------------
+  // focus ---------------------------
   const focusEdit = () => defaultRef.current.focus();
 
   // change complete -----------------
-  const changeCompleteTodo = ({ id }) => {
+  const changeCompleteTodo = ({ id, title, complete }) => {
     const changeComplete = todos.map((todo) =>
-      todo.id === id ? { ...todo, complete: !todo.complete } : todo
+      todo.id === id ? { ...todo, complete: !complete } : todo
     );
     setTodos(changeComplete);
+
+    changeTodoCompleteInDbJson(id, title, complete);
+  };
+
+  // change complete in db.json------
+  const changeTodoCompleteInDbJson = (id, title, complete) => {
+    const todoDetailes = {
+      id: id,
+      title: title,
+      complete: !complete,
+    };
+
+    JsonCrud.updateTodoDbJson(id, todoDetailes);
   };
 
   // filter todos ---------------------
@@ -108,6 +124,7 @@ const Layout = () => {
           changeCompleteTodo,
           filters,
           show,
+          setLoading,
         }}
       >
         {/* forms */}
