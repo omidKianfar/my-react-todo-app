@@ -1,22 +1,21 @@
-import React, { useEffect, useContext } from "react";
+import { useContext } from "react";
 import PropTypes from "prop-types";
 
-import Auxx from "../Tools/Auxx";
-import { todoContext } from "../hocs/Context";
+import { todoContext } from "../Hooks/TodoContext";
+import { ChangeFiltersDefault } from "../Tools/Filters/ChangeFiltersDefault";
+import Auxx from "../Tools/Auxx/Auxx";
+import { filterTodos } from "../Tools/Filters/FilterTodos";
 
 const TodoFilterForm = () => {
-  const { selectValue, setSelectValue, filterTodos } = useContext(todoContext);
+  const contextProps = useContext(todoContext);
 
-  useEffect(() => {
-    if (selectValue) {
-      filterTodos(selectValue);
-    }
-  }, [selectValue]);
+  //show filters state when selected filter menu value based complete value
+  ChangeFiltersDefault(contextProps);
 
   return (
     <Auxx>
-      <form onSubmit={() => filterTodos(selectValue)}>
-        <select onChange={(e) => setSelectValue(e.target.value)}>
+      <form onSubmit={() => filterTodos(contextProps)}>
+        <select onChange={(e) => contextProps.setSelectValue(e.target.value)}>
           <option value="all">all</option>
           <option value="true">Completed</option>
           <option value="false">UnComplete</option>
@@ -25,11 +24,8 @@ const TodoFilterForm = () => {
     </Auxx>
   );
 };
-
 export default TodoFilterForm;
 
 TodoFilterForm.propTypes = {
-  selectValue: PropTypes.string,
   setSelectValue: PropTypes.func,
-  filterTodos: PropTypes.func,
 };

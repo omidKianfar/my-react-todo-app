@@ -1,37 +1,23 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import PropTypes from "prop-types";
 
-import Auxx from "../Tools/Auxx";
-import { todoContext } from "../hocs/Context";
+import { todoContext } from "../Hooks/TodoContext";
+import { ChangeFiltersTodoCompleteDefault } from "../Tools/Filters/ChangeFiltersTodoCompleteDefault";
+import Auxx from "../Tools/Auxx/Auxx";
+import { deleteTodo } from "../Tools/CRUD/DeleteTodo";
+import { editTodo } from "../Tools/CRUD/EditTodo";
+import { changeCompleteTodo } from "../Tools/CRUD/ChangeCompleteTodo";
 
 const TodoFilterList = () => {
-  const {
-    filters,
-    filterTodos,
-    deleteTodoHandler,
-    editTodo,
-    changeCompleteTodo,
-    selectValue,
-  } = useContext(todoContext);
+  const contextProps = useContext(todoContext);
 
-  const [changeComplete, setChangeComplete] = useState(false);
-
-  useEffect(() => {
-    if (changeComplete) {
-      filterTodos(selectValue);
-      setChangeComplete(false);
-    }
-  }, [selectValue, changeComplete]);
-
-  const changeCompleteFilters = (todo) => {
-    changeCompleteTodo(todo);
-    setChangeComplete(true);
-  };
+  // when click change complete its hide and change todo filters state and show in selected value
+  ChangeFiltersTodoCompleteDefault(contextProps);
 
   return (
     <Auxx>
       <ol>
-        {filters.map((todo) => (
+        {contextProps.filters.map((todo) => (
           <li key={todo.id}>
             <input
               type="text"
@@ -39,9 +25,11 @@ const TodoFilterList = () => {
               onChange={(e) => e.preventDefault()}
               disabled
             />
-            <button onClick={() => deleteTodoHandler(todo)}>Delete</button>
-            <button onClick={() => editTodo(todo)}>Edit</button>
-            <button onClick={() => changeCompleteFilters(todo)}>
+            <button onClick={() => deleteTodo(todo, contextProps)}>
+              Delete
+            </button>
+            <button onClick={() => editTodo(todo, contextProps)}>Edit</button>
+            <button onClick={() => changeCompleteTodo(todo, contextProps)}>
               {todo.complete ? "Complete" : "UnComplete"} change
             </button>
           </li>
@@ -50,14 +38,8 @@ const TodoFilterList = () => {
     </Auxx>
   );
 };
-
 export default TodoFilterList;
 
 TodoFilterList.propTypes = {
   filters: PropTypes.array,
-  filterTodos: PropTypes.func,
-  selectValue: PropTypes.string,
-  editTodo: PropTypes.func,
-  deleteTodoHandler: PropTypes.func,
-  changeCompleteTodo: PropTypes.func,
 };

@@ -1,16 +1,19 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import PropTypes from "prop-types";
 
-import Auxx from "../Tools/Auxx";
-import { todoContext } from "../hocs/Context";
+import { todoContext } from "../Hooks/TodoContext";
+import Auxx from "../Tools/Auxx/Auxx";
+import { deleteTodo } from "../Tools/CRUD/DeleteTodo";
+import { editTodo } from "../Tools/CRUD/EditTodo";
+import { changeCompleteTodo } from "../Tools/CRUD/ChangeCompleteTodo";
 
 const TodoList = () => {
-  const { todos, deleteTodoHandler, editTodo, changeCompleteTodo } =
-    useContext(todoContext);
+  const contextProps = useContext(todoContext);
+
   return (
     <Auxx>
       <ol>
-        {todos.map((todo) => (
+        {contextProps.todos.map((todo) => (
           <li key={todo.id}>
             <input
               type="text"
@@ -18,9 +21,11 @@ const TodoList = () => {
               onChange={(e) => e.preventDefault()}
               disabled
             />
-            <button onClick={() => deleteTodoHandler(todo)}>Delete</button>
-            <button onClick={() => editTodo(todo)}>Edit</button>
-            <button onClick={() => changeCompleteTodo(todo)}>
+            <button onClick={() => deleteTodo(todo, contextProps)}>
+              Delete
+            </button>
+            <button onClick={() => editTodo(todo, contextProps)}>Edit</button>
+            <button onClick={() => changeCompleteTodo(todo, contextProps)}>
               {todo.complete ? "Complete" : "UnComplete"}
             </button>
           </li>
@@ -33,7 +38,4 @@ export default TodoList;
 
 TodoList.propTypes = {
   todos: PropTypes.array,
-  deleteTodoHandler: PropTypes.func,
-  editTodo: PropTypes.func,
-  changeCompleteTodo: PropTypes.func,
 };
