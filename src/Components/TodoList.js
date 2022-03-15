@@ -1,8 +1,7 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import PropTypes from "prop-types";
 
 import { todoContext } from "../Hooks/TodoContext";
-import Auxx from "../Tools/Auxx/Auxx";
 import { deleteTodo } from "../Tools/CRUD/DeleteTodo";
 import { editTodo } from "../Tools/CRUD/EditTodo";
 import { changeCompleteTodo } from "../Tools/CRUD/ChangeCompleteTodo";
@@ -11,7 +10,7 @@ const TodoList = () => {
   const contextProps = useContext(todoContext);
 
   return (
-    <Auxx>
+    <Fragment>
       <ol>
         {contextProps.todos.map((todo) => (
           <li key={todo.id}>
@@ -31,7 +30,7 @@ const TodoList = () => {
           </li>
         ))}
       </ol>
-    </Auxx>
+    </Fragment>
   );
 };
 export default TodoList;

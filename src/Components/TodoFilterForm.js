@@ -1,9 +1,8 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import PropTypes from "prop-types";
 
 import { todoContext } from "../Hooks/TodoContext";
 import { ChangeFiltersDefault } from "../Tools/Filters/ChangeFiltersDefault";
-import Auxx from "../Tools/Auxx/Auxx";
 import { filterTodos } from "../Tools/Filters/FilterTodos";
 
 const TodoFilterForm = () => {
@@ -13,7 +12,7 @@ const TodoFilterForm = () => {
   ChangeFiltersDefault(contextProps);
 
   return (
-    <Auxx>
+    <Fragment>
       <form onSubmit={() => filterTodos(contextProps)}>
         <select onChange={(e) => contextProps.setSelectValue(e.target.value)}>
           <option value="all">all</option>
@@ -21,7 +20,7 @@ const TodoFilterForm = () => {
           <option value="false">UnComplete</option>
         </select>
       </form>
-    </Auxx>
+    </Fragment>
   );
 };
 export default TodoFilterForm;

@@ -1,9 +1,8 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import PropTypes from "prop-types";
 
 import { todoContext } from "../Hooks/TodoContext";
 import { ChangeFiltersTodoCompleteDefault } from "../Tools/Filters/ChangeFiltersTodoCompleteDefault";
-import Auxx from "../Tools/Auxx/Auxx";
 import { deleteTodo } from "../Tools/CRUD/DeleteTodo";
 import { editTodo } from "../Tools/CRUD/EditTodo";
 import { changeCompleteTodo } from "../Tools/CRUD/ChangeCompleteTodo";
@@ -15,7 +14,7 @@ const TodoFilterList = () => {
   ChangeFiltersTodoCompleteDefault(contextProps);
 
   return (
-    <Auxx>
+    <Fragment>
       <ol>
         {contextProps.filters.map((todo) => (
           <li key={todo.id}>
@@ -35,7 +34,7 @@ const TodoFilterList = () => {
           </li>
         ))}
       </ol>
-    </Auxx>
+    </Fragment>
   );
 };
 export default TodoFilterList;

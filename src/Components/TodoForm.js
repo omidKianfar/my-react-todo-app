@@ -1,15 +1,14 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import PropTypes from "prop-types";
 
 import { todoContext } from "../Hooks/TodoContext";
-import Auxx from "../Tools/Auxx/Auxx";
 import { addTodo } from "../Tools/CRUD/AddTodo";
 
 const TodoForm = () => {
   const contextProps = useContext(todoContext);
 
   return (
-    <Auxx>
+    <Fragment>
       <form onSubmit={(e) => addTodo(e, contextProps)}>
         <input
           type="text"
@@ -22,7 +21,7 @@ const TodoForm = () => {
         />
         <input type="submit" value={contextProps.edit ? "Update" : "Add"} />
       </form>
-    </Auxx>
+    </Fragment>
   );
 };
 export default TodoForm;

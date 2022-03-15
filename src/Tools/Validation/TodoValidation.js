@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import { todoContext } from "../../Hooks/TodoContext";
 
 const TodoValidation = () => {
@@ -15,9 +15,9 @@ const TodoValidation = () => {
   }
 
   return (
-    <div>
+    <Fragment>
       <p>{valid}</p>
-    </div>
+    </Fragment>
   );
 };
 export default TodoValidation;
