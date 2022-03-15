@@ -7,6 +7,7 @@ import TodoFilterList from "./Components/TodoFilterList";
 import { todoContext } from "./Hooks/TodoContext";
 import { GetAllData } from "./JsonCrud/GetAllData";
 import { DefaultRefTodo } from "./Tools/Ref/DefaultRefTodo";
+import TodoValidation from "./Tools/Validation/TodoValidation";
 
 const Todo = () => {
   const [inputTodo, setInputTodo] = useState("");
@@ -45,6 +46,7 @@ const Todo = () => {
       }}
     >
       <TodoForm />
+      <TodoValidation />
       <TodoFilterForm />
 
       {show ? <TodoList /> : <TodoFilterList />}

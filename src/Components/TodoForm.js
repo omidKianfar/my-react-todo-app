@@ -17,6 +17,7 @@ const TodoForm = () => {
           value={contextProps.inputTodo}
           onChange={(e) => contextProps.setInputTodo(e.target.value)}
           ref={contextProps.defaultRef}
+          maxLength="100"
           required
         />
         <input type="submit" value={contextProps.edit ? "Update" : "Add"} />
