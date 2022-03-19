@@ -1,32 +1,40 @@
 import PropTypes from "prop-types";
 
-export const filterTodos = ({ selectValue, setShow, todos, setFilters }) => {
-  switch (selectValue) {
-    // show todos state
+export const filterTodos = (props) => {
+  switch (props.selectValue) {
     case "all":
-      setShow(true);
+      allTodos(props);
       break;
-
-    // show filters state base complete
     case "true":
-      const filterCompleteTrue = todos.filter((todo) => todo.complete === true);
-      setFilters(filterCompleteTrue);
-
-      setShow(false);
+      filterCompleteTrue(props);
       break;
-
-    // show filters state base unComplete
     case "false":
-      const filterCompleteFalse = todos.filter(
-        (todo) => todo.complete === false
-      );
-      setFilters(filterCompleteFalse);
-
-      setShow(false);
+      filterCompleteFalse(props);
       break;
   }
 };
 
+// ----------------------------- Func ------------------------------------
+// show todos state ------------------------------------------------------
+const allTodos = ({ setShow }) => {
+  setShow(true);
+};
+
+// show filters state base complete --------------------------------------
+const filterCompleteTrue = ({ setShow, todos, setFilters }) => {
+  const filterCompleteTrue = todos.filter((todo) => todo.complete === true);
+  setFilters(filterCompleteTrue);
+  setShow(false);
+};
+
+// show filters state base unComplete -------------------------------------
+const filterCompleteFalse = ({ setShow, todos, setFilters }) => {
+  const filterCompleteFalse = todos.filter((todo) => todo.complete === false);
+  setFilters(filterCompleteFalse);
+  setShow(false);
+};
+
+// ---------------------------- prop types --------------------------------
 filterTodos.propTypes = {
   todos: PropTypes.array,
   setFilters: PropTypes.func,

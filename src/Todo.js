@@ -1,15 +1,21 @@
 import { useState } from "react";
 
-import TodoForm from "./Components/TodoForm";
-import TodoList from "./Components/TodoList";
-import TodoFilterForm from "./Components/TodoFilterForm";
-import TodoFilterList from "./Components/TodoFilterList";
-import { todoContext } from "./Hooks/TodoContext";
-import { GetAllData } from "./JsonCrud/GetAllData";
+// ----------------------------- Hook folder ----------------------------------
+import TodoContext from "./Hooks/TodoContext";
+
+// ----------------------------- Tools folder ---------------------------------
 import { DefaultRefTodo } from "./Tools/Ref/DefaultRefTodo";
-import TodoValidation from "./Tools/Validation/TodoValidation";
+import { addTodo } from "./Tools/CRUD/AddTodo";
+import { editTodo } from "./Tools/CRUD/EditTodo";
+import { deleteTodo } from "./Tools/CRUD/DeleteTodo";
+import { filterTodos } from "./Tools/Filters/FilterTodos";
+import { changeCompleteTodo } from "./Tools/CRUD/ChangeCompleteTodo";
+
+// ----------------------------- Components folder ---------------------------
+import Main from "./Components/Main";
 
 const Todo = () => {
+  // ----------------------------- state ------------------------------------
   const [inputTodo, setInputTodo] = useState("");
   const [todos, setTodos] = useState([]);
   const [edit, setEdit] = useState(null);
@@ -19,38 +25,40 @@ const Todo = () => {
   const [loading, setLoading] = useState(true);
   const [changeComplete, setChangeComplete] = useState(false);
 
-  // get data from db.json ------------
-  GetAllData(loading, setTodos, setLoading);
+  // ----------------------------- Func ------------------------------------
 
-  // focus Input default --------------
+  // focus Input default ---------------------------------------------------
   const defaultRef = DefaultRefTodo(inputTodo);
 
-  return (
-    <todoContext.Provider
-      value={{
-        inputTodo,
-        setInputTodo,
-        todos,
-        setTodos,
-        filters,
-        setFilters,
-        edit,
-        setEdit,
-        defaultRef,
-        selectValue,
-        setSelectValue,
-        setShow,
-        setLoading,
-        changeComplete,
-        setChangeComplete,
-      }}
-    >
-      <TodoForm />
-      <TodoValidation />
-      <TodoFilterForm />
+  const TodoContextProps = {
+    inputTodo,
+    setInputTodo,
+    todos,
+    setTodos,
+    edit,
+    setEdit,
+    filters,
+    setFilters,
+    selectValue,
+    setSelectValue,
+    show,
+    setShow,
+    loading,
+    setLoading,
+    defaultRef,
+    changeComplete,
+    setChangeComplete,
+    addTodo,
+    editTodo,
+    deleteTodo,
+    filterTodos,
+    changeCompleteTodo,
+  };
 
-      {show ? <TodoList /> : <TodoFilterList />}
-    </todoContext.Provider>
+  return (
+    <TodoContext.Provider value={TodoContextProps}>
+      <Main />
+    </TodoContext.Provider>
   );
 };
 export default Todo;

@@ -7,9 +7,8 @@ export const GetAllData = (loading, setTodos, setLoading) => {
   useEffect(() => {
     if (loading === true) {
       getAllTodosDbJson(setTodos);
+      setLoading(false);
     }
-
-    setLoading(false);
   }, [loading]);
 };
 

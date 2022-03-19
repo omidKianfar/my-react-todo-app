@@ -10,6 +10,7 @@ export const DefaultRefTodo = (inputTodo) => {
   return refInputTodo;
 };
 
+// ----------------------------- prop types ------------------------------------
 DefaultRefTodo.propTypes = {
   inputTodo: PropTypes.string,
 };

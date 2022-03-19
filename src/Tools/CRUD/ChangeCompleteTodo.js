@@ -1,24 +1,23 @@
+import { updateTodoDbJson } from "../../JsonCrud/JsonCrud";
 import PropTypes from "prop-types";
 
-import { updateTodoDbJson } from "../../JsonCrud/JsonCrud";
+export const changeCompleteTodo = (todo, props) => {
+  changeCompleteTodoHandler(todo, props);
+  changeTodoCompleteInDbJson(todo);
+  props.setChangeComplete(true);
+};
 
-export const changeCompleteTodo = (
-  { id, title, complete },
-  { todos, setTodos, setChangeComplete }
-) => {
-  // map todos, find id equal todo id and update complete object
+// ----------------------------- Func ------------------------------------
+// map todos, find id equal todo id and update complete object --
+const changeCompleteTodoHandler = ({ id, complete }, { todos, setTodos }) => {
   const changeComplete = todos.map((todo) =>
     todo.id === id ? { ...todo, complete: !complete } : todo
   );
   setTodos(changeComplete);
-
-  changeTodoCompleteInDbJson(id, title, complete);
-
-  setChangeComplete(true);
 };
 
-// change complete in db.json
-const changeTodoCompleteInDbJson = (id, title, complete) => {
+// change complete in db.json --------------------------------------------
+const changeTodoCompleteInDbJson = ({ id, title, complete }) => {
   const todoDetailes = {
     id: id,
     title: title,
@@ -27,6 +26,7 @@ const changeTodoCompleteInDbJson = (id, title, complete) => {
   updateTodoDbJson(id, todoDetailes);
 };
 
+// ---------------------------- prop types ------------------------------
 changeCompleteTodo.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,

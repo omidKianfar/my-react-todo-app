@@ -1,18 +1,18 @@
 import { useEffect } from "react";
+import { filterTodos } from "./FilterTodos";
 import PropTypes from "prop-types";
 
-import { filterTodos } from "./FilterTodos";
-
 export const ChangeFiltersTodoCompleteDefault = (props) => {
+  const { changeComplete, setChangeComplete } = props;
   useEffect(() => {
-    if (props.changeComplete) {
+    if (changeComplete) {
       filterTodos(props);
-
-      props.setChangeComplete(false);
+      setChangeComplete(false);
     }
-  }, [props.changeComplete]);
+  }, [changeComplete]);
 };
 
+// ---------------------------- prop types ------------------------------
 ChangeFiltersTodoCompleteDefault.propTypes = {
   changeComplete: PropTypes.bool,
   setChangeComplete: PropTypes.func,

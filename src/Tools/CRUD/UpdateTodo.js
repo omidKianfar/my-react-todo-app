@@ -1,31 +1,30 @@
-import PropTypes from "prop-types";
-
 import { updateTodoDbJson } from "../../JsonCrud/JsonCrud";
+import PropTypes from "prop-types";
 
 export const updateTodo = (id, title, complete, props) => {
   updateTodosTodo(id, title, complete, props);
-
   updateFiltersTodo(id, title, complete, props);
-
   updateDbJsonTodosTodo(id, title, complete, props);
 };
 
-// map todos, find id equal todo id and set object
-const updateTodosTodo = (id, title, complete, props) => {
-  const newTodo = props.todos.map((todo) =>
+// ----------------------------- Func ------------------------------------
+// map todos, find id equal todo id and set object -----------------------
+const updateTodosTodo = (id, title, complete, { todos, setTodos }) => {
+  const newTodo = todos.map((todo) =>
     todo.id === id ? { id, title, complete } : todo
   );
-  props.setTodos(newTodo);
+  setTodos(newTodo);
 };
 
-// map filters, find id equal todo id and set object
-const updateFiltersTodo = (id, title, complete, props) => {
-  const newFilterTodo = props.filters.map((todo) =>
+// map filters, find id equal todo id and set object ---------------------
+const updateFiltersTodo = (id, title, complete, { filters, setFilters }) => {
+  const newFilterTodo = filters.map((todo) =>
     todo.id === id ? { id, title, complete } : todo
   );
-  props.setFilters(newFilterTodo);
+  setFilters(newFilterTodo);
 };
-// update todo when id equal to db.json todos id
+
+// update todo when id equal to db.json todos id -------------------------
 const updateDbJsonTodosTodo = (id, title, complete) => {
   const todoDetailes = {
     id: id,
@@ -35,6 +34,7 @@ const updateDbJsonTodosTodo = (id, title, complete) => {
   updateTodoDbJson(id, todoDetailes);
 };
 
+// ---------------------------- prop types -------------------------------
 updateTodo.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,

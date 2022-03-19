@@ -1,16 +1,17 @@
 import { useEffect } from "react";
+import { filterTodos } from "./FilterTodos";
 import PropTypes from "prop-types";
 
-import { filterTodos } from "./FilterTodos";
-
 export const ChangeFiltersDefault = (props) => {
+  const { selectValue } = props;
   useEffect(() => {
-    if (props.selectValue) {
+    if (selectValue) {
       filterTodos(props);
     }
-  }, [props.selectValue]);
+  }, [selectValue]);
 };
 
+// ---------------------------- prop types ------------------------------
 ChangeFiltersDefault.propTypes = {
   selectValue: PropTypes.string,
 };
