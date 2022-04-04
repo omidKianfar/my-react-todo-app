@@ -1,11 +1,11 @@
-import { Fragment, useContext } from "react";
+import { useContext } from "react";
+
 import TodoContext from "../../Hooks/TodoContext";
 
 const TodoValidation = () => {
   const { inputTodo } = useContext(TodoContext);
 
   let valid = "";
-
   if (inputTodo.length >= 85 && inputTodo.length <= 99) {
     valid = "Its too long chracter. maximum is 100 character";
   } else if (inputTodo.length == 100) {
@@ -15,9 +15,9 @@ const TodoValidation = () => {
   }
 
   return (
-    <Fragment>
+    <div>
       <p>{valid}</p>
-    </Fragment>
+    </div>
   );
 };
 export default TodoValidation;

@@ -1,7 +1,9 @@
 import { useEffect } from "react";
-import { filterTodos } from "./FilterTodos";
 import PropTypes from "prop-types";
 
+import { filterTodos } from "./FilterTodos/FilterTodos";
+
+//show filters state with complete value when change select with use Effect
 export const ChangeFiltersDefault = (props) => {
   const { selectValue } = props;
   useEffect(() => {
@@ -11,7 +13,6 @@ export const ChangeFiltersDefault = (props) => {
   }, [selectValue]);
 };
 
-// ---------------------------- prop types ------------------------------
 ChangeFiltersDefault.propTypes = {
   selectValue: PropTypes.string,
 };

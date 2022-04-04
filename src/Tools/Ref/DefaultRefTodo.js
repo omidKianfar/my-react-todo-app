@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
+// focus on input when render and rerender Layout
 export const DefaultRefTodo = (inputTodo) => {
   const refInputTodo = useRef();
   useEffect(() => {
@@ -10,7 +11,6 @@ export const DefaultRefTodo = (inputTodo) => {
   return refInputTodo;
 };
 
-// ----------------------------- prop types ------------------------------------
 DefaultRefTodo.propTypes = {
   inputTodo: PropTypes.string,
 };

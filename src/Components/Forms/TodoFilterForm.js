@@ -1,18 +1,26 @@
 import { useContext } from "react";
+import PropTypes from "prop-types";
+
 import TodoContext from "../../Hooks/TodoContext";
 import { ChangeFiltersDefault } from "../../Tools/Filters/ChangeFiltersDefault";
-import PropTypes from "prop-types";
 
 const TodoFilterForm = () => {
   const contextProps = useContext(TodoContext);
+  const { filterTodos, setSelectValue, selectValue } = contextProps;
 
-  //show filters state when selected filter menu value based complete value
+  //show filters state with complete value when change select with use Effect
   ChangeFiltersDefault(contextProps);
 
-  const { filterTodos, setSelectValue, selectValue } = contextProps;
   return (
     <form onSubmit={() => filterTodos(contextProps)}>
+      <label
+        htmlFor="selectFilter"
+        title="Filter todos with complete or uncomplete todo or all todos"
+      >
+        Choose filters
+      </label>
       <select
+        name="selectFilter"
         onChange={(e) => setSelectValue(e.target.value)}
         value={selectValue}
       >
@@ -25,7 +33,6 @@ const TodoFilterForm = () => {
 };
 export default TodoFilterForm;
 
-// ---------------------------- prop types ------------------------------
 TodoFilterForm.propTypes = {
   setSelectValue: PropTypes.func,
 };
