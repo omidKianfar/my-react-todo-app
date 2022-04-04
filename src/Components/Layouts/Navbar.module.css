@@ -1,0 +1,41 @@
+
+.header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+.navbar {
+    background-color: #03a9f4;
+    box-shadow: 0 4px 4px 0 #8f8f8f;
+}
+
+.flex_container {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.ul {
+    list-style-type: none;
+}
+
+.ul li{
+    display: inline-block;
+    padding: 10px;
+    margin: 0 10px 0 15px;
+}
+
+.ul li:hover{
+    background-color: rgba(240,240,240,0.4);
+}
+
+.ul a{
+    color: #000000;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+.ul a:active{
+    color: #ffffff;
+}
