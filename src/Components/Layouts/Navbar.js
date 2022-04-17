@@ -1,20 +1,21 @@
 import { Fragment } from "react";
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, NavLink, Switch } from "react-router-dom";
 
 import About from "./About";
 import Main from "./Main";
+import Styles from "./Navbar.module.css";
 
 const Navbar = () => {
   return (
     <Fragment>
-      <header>
-        <nav>
-          <ul>
+      <header className={Styles.header}>
+        <nav className={Styles.navbar}>
+          <ul className={`${Styles.ul} ${Styles.flex_container} `}>
             <li>
-              <Link to="/">Home</Link>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <NavLink to="/about">About</NavLink>
             </li>
           </ul>
         </nav>
