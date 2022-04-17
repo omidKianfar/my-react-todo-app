@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --darkBlue: #263238;
+    --lightBlue: #A1D4E2;
+    --light: #F2F5ED;
+}
+
+body {
+    font-family: 'Pattaya', -apple-system, sans-serif;
+}
+
+h1 {
+    color: var(--darkBlue);
+    text-align: center;
+}
+
+P {
+    color: var(--darkBlue);
+}
