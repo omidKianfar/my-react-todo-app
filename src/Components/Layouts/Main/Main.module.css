@@ -1,0 +1,73 @@
+.section1,
+.section2 {
+    width: 95%;
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-content: center;
+}
+
+.section1 {
+    margin: 20vh auto 10px auto;
+    height: 220px;
+    background-color: var(--light);
+    border-radius: 50px;
+    border: 3px solid var(--darkBlue);
+}
+
+.section2 {
+    margin: 10px auto 0 auto;
+    border-radius: 50px 50px 0 0;
+    background-color: var(--light);
+    border: 3px solid var(--darkBlue);
+    border-bottom: none;
+    padding: 20px 10px;
+}
+
+.section1 h1 {
+    background-color: var(--lightBlue);
+    width: 400px;
+    height: 50px;
+    border-radius: 5px 5px 50px 50px;
+    padding: 10px;
+    box-shadow: 0 4px 2px var(--darkBlue);
+    margin: 0 auto;
+    font-size: 24px;
+}
+
+.menu {
+    width: 1200px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.menuSearch {
+    display: grid;
+    justify-content: center;
+}
+
+.menuFilter {
+    display: grid;
+    justify-content: center;
+}
+
+.note {
+    width: 1200px;
+    margin-top: 50px;
+    display: grid;
+    justify-content: center;
+    border: 3px solid var(--darkBlue);
+    border-radius: 50px;
+    background-color: var(--lightBlue);
+    padding: 0 10px 30px 10px;
+}
+
+.note h1 {
+    width: 400px;
+    height: 50px;
+    background-color: var(--light);
+    margin: 0 auto 25px auto;
+    padding: 10px;
+    border-radius: 5px 5px 50px 50px;
+    font-size: 24px;
+    box-shadow: 0 4px 2px var(--darkBlue);
+}

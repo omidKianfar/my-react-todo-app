@@ -1,0 +1,22 @@
+.todoSearchForm {
+    display: grid;
+    grid-template-rows: auto auto;
+
+}
+
+.todoSearchForm label {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 5px 0 5px 20px;
+
+}
+
+.todoSearchForm input {
+    width: 300px;
+    padding: 10px 30px;
+
+}
+
+.todoSearchForm input:focus {
+    box-shadow: 0 0 4px 2px var(--lightBlue);
+}

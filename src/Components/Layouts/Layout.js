@@ -7,9 +7,10 @@ import { editTodo } from "../../Tools/CRUD/EditTodo/EditTodo";
 import { deleteTodo } from "../../Tools/CRUD/DeleteTodo/DeleteTodo";
 import { filterTodos } from "../../Tools/Filters/FilterTodos/FilterTodos";
 import { changeCompleteTodo } from "../../Tools/CRUD/ChangeCompleteTodo/ChangeCompleteTodo";
-
-import Navbar from "./Navbar";
-import { Footer } from "./Footer";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import Navbar from "./Navbar/Navbar";
 
 const Layout = () => {
   const [inputTodo, setInputTodo] = useState("");
@@ -23,7 +24,6 @@ const Layout = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchTodos, setSearchTodos] = useState([]);
   const [searchShow, setSearchShow] = useState(false);
-
   // focus Input default
   const defaultRef = DefaultRefTodo(inputTodo);
 
@@ -55,6 +55,9 @@ const Layout = () => {
     setSearchTodos,
     searchShow,
     setSearchShow,
+    DeleteIcon,
+    EditIcon,
+    CheckCircleIcon,
   };
 
   return (
@@ -62,7 +65,6 @@ const Layout = () => {
       <TodoContext.Provider value={TodoContextProps}>
         <Fragment>
           <Navbar />
-          <Footer />
         </Fragment>
       </TodoContext.Provider>
     </BrowserRouter>

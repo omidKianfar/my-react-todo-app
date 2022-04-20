@@ -1,0 +1,39 @@
+.cart {
+    width: 950px;
+    border-bottom: 3px solid var(--darkBlue);
+    outline: none;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.cart p {
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.buttons {
+    width: 120px;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    align-items: center;
+}
+
+.icon:hover {
+    background-color: var(--light);
+    border: 1px solid var(--darkBlue);
+    padding: 2px;
+    border-radius: 50px;
+    zoom: 2;
+}
+
+.iconComplete {
+    color: #009688;
+}
+
+.iconUncomplete {
+    color: gray;
+}

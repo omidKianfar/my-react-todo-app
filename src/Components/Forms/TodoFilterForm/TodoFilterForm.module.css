@@ -1,0 +1,25 @@
+.todoFilterForm {
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+.todoFilterForm label {
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin: 5px 0 5px 20px;
+}
+
+.todoFilterForm select {
+    height: 40px;
+    width: 300px;
+    border-radius: 10px;
+    outline: none;
+    border: 3px solid var(--darkBlue);
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+.todoFilterForm select:focus {
+    box-shadow: 0 0 4px 2px var(--lightBlue);
+}

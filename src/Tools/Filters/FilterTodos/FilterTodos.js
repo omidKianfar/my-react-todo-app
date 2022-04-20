@@ -7,7 +7,7 @@ import { filterCompleteTrue } from "./FilterCompleteTrue";
 // filters todos
 export const filterTodos = (props) => {
   switch (props.selectValue) {
-    case "all":
+    case "All":
       allTodos(props);
       break;
 

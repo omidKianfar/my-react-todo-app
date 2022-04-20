@@ -1,43 +1,50 @@
 import PropTypes from "prop-types";
 
 import TodoContext from "../../Hooks/TodoContext";
+import Styles from "./list.module.css";
 
 const TodoList = () => {
   return (
     <TodoContext.Consumer>
       {(contextProps) => {
-        const { todos, deleteTodo, editTodo, changeCompleteTodo } =
-          contextProps;
+        const {
+          todos,
+          deleteTodo,
+          editTodo,
+          changeCompleteTodo,
+          DeleteIcon,
+          EditIcon,
+          CheckCircleIcon,
+        } = contextProps;
 
         return (
           <div>
-            <h1>Todos List</h1>
+            {todos.map((todo) => (
+              <div className={Styles.cart} key={todo.id}>
+                <p type="text">{todo.title}</p>
 
-            <ul>
-              {todos.map((todo) => (
-                <li key={todo.id}>
-                  <input
-                    type="text"
-                    value={todo.title}
-                    size={50}
-                    readOnly
-                    disabled
+                <div className={Styles.buttons}>
+                  <DeleteIcon
+                    className={Styles.icon}
+                    sx={{ color: "#D84315" }}
+                    onClick={() => deleteTodo(todo, contextProps)}
                   />
-
-                  <button onClick={() => deleteTodo(todo, contextProps)}>
-                    Delete
-                  </button>
-                  <button onClick={() => editTodo(todo, contextProps)}>
-                    Edit
-                  </button>
-                  <button
+                  <EditIcon
+                    className={Styles.icon}
+                    sx={{ color: "#0288D1" }}
+                    onClick={() => editTodo(todo, contextProps)}
+                  />
+                  <CheckCircleIcon
+                    className={`${Styles.icon} ${
+                      todo.complete
+                        ? `${Styles.iconComplete}`
+                        : `${Styles.iconUncomplete}`
+                    }`}
                     onClick={() => changeCompleteTodo(todo, contextProps)}
-                  >
-                    {todo.complete ? "Complete" : "UnComplete"}
-                  </button>
-                </li>
-              ))}
-            </ul>
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         );
       }}

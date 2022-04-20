@@ -4,6 +4,7 @@
     -moz-box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Jua', sans-serif;
 }
 
 :root {
@@ -12,15 +13,24 @@
     --light: #F2F5ED;
 }
 
-body {
-    font-family: 'Pattaya', -apple-system, sans-serif;
-}
-
 h1 {
     color: var(--darkBlue);
     text-align: center;
 }
 
-P {
+P,
+ul {
     color: var(--darkBlue);
+}
+
+input {
+    border: 3px solid var(--darkBlue);
+    border-radius: 50px;
+    outline: none;
+    height: 40px;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 700;
 }
