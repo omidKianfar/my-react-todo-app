@@ -22,7 +22,7 @@
     height: 50px;
     justify-content: space-around;
     align-items: center;
-    padding: 1px 15px;
+    padding: 10px;
     border-radius: 50px;
     background: var(--lightBlue);
     box-shadow: 0 0 2px 2px var(--light), 0 0 2px 4px var(--darkBlue);
@@ -30,7 +30,6 @@
 
 .ul a {
     text-decoration: none;
-    font-weight: 700;
     font-size: 24px;
     color: var(--darkBlue);
 }
