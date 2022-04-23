@@ -1,101 +1,65 @@
 .cloumns {
-    display: grid;
     grid-template-columns: 50% 50%;
-    justify-content: space-around;
     align-items: center;
 }
 
 .section1 img {
-    width: 100%;
     height: 100%;
     border-bottom-right-radius: 50px;
 }
 
-.section1 img,
-.section2 img {
-    filter: drop-shadow(0px 2px 4px var(--darkBlue));
-}
-
-.section1 h1 {
-    padding: 20px 0;
-}
-
-.section2 h1 {
-    padding: 10vh 0;
-}
-
-.section1 h1,
-.section2 h1 {
-    font-size: 32px;
-}
-
-.AboutSection {
+.about_section {
     padding: 15px 20px;
     border-radius: 10px;
     background-color: var(--light);
     border: 3px solid var(--lightBlue);
 }
 
-.AboutSection h3 {
-    text-align: start;
+.section1 h1 {
+    margin: 20px 0;
 }
 
-.AboutSection ul {
+.about_section ul {
     margin-left: 30px;
-    text-align: start;
+}
+
+.section2 h1 {
+    margin: 10vh 0;
 }
 
 .section2 p {
-    margin: 10px 0;
-}
-
-.todoFormImg {
-    height: 100px;
-}
-
-.todoListImg {
-    height: 200px;
-}
-
-.todoListImg,
-.todoFormImg {
-    width: 500px;
-    border-radius: 50px;
-
-}
-
-.AboutSection li,
-.section2 p {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.row1,
-.row2 {
-    padding: 30px 0;
+    margin: 10px;
 }
 
 .row1 {
-    background: linear-gradient(to right, var(--light), transparent);
+    background: linear-gradient(to right, var(--light), transparent, transparent);
+}
+
+.todo_form_img {
+    height: 100px;
 }
 
 .row2 {
-    background: linear-gradient(to left, var(--lightBlue), transparent);
+    background: linear-gradient(to left, var(--lightBlue), transparent, transparent);
 }
 
-.row1 p {
-    background: linear-gradient(to right, transparent, var(--lightBlue), transparent);
+.todo_list_img {
+    height: 200px;
 }
 
-.row2 p {
-    background: linear-gradient(to right, transparent, var(--light), transparent);
+:where(.cloumns, .content_center) {
+    display: grid;
+    justify-content: space-around;
 }
 
-.row1 p,
-.row2 p {
-    padding: 20px;
+:where(.todo_list_img, .todo_form_img, .section1 img) {
+    width: 100%;
 }
 
-.content_center {
-    margin: 0 auto;
+:where(.todo_list_img, .todo_form_img) {
+    border-radius: 50px;
+}
+
+:where(.row1, .row2) {
+    padding: 30px 0;
 }

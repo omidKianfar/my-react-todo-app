@@ -29,6 +29,7 @@ const TodoList = () => {
                     sx={{ color: "#D84315" }}
                     onClick={() => deleteTodo(todo, contextProps)}
                   />
+
                   <EditIcon
                     className={Styles.icon}
                     sx={{ color: "#0288D1" }}

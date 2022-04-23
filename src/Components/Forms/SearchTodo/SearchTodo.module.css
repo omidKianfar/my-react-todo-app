@@ -1,22 +1,17 @@
-.todoSearchForm {
-    display: grid;
-    grid-template-rows: auto auto;
-
-}
-
-.todoSearchForm label {
-    font-size: 16px;
-    font-weight: 700;
+.todo_search_form label {
     margin: 5px 0 5px 20px;
-
 }
 
-.todoSearchForm input {
-    width: 300px;
+.todo_search_form input {
+    width: 100%;
     padding: 10px 30px;
-
 }
 
-.todoSearchForm input:focus {
+.todo_search_form input:focus {
     box-shadow: 0 0 4px 2px var(--lightBlue);
+}
+
+:where(.todo_search_form) input,
+label {
+    display: block;
 }

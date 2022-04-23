@@ -10,7 +10,7 @@ export const addTodo = (e, props) => {
   if (!edit) {
     addTodoHandler(props);
     setLoading(true);
-    setSelectValue("all");
+    setSelectValue("All");
   } else {
     updateTodoHandler(props);
     setEdit(null);

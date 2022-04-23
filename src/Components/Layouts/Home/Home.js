@@ -1,21 +1,21 @@
 import Styles from "./Home.module.css";
+
+import HomeImg from "./Img/Home.jpg";
 import TodoFormImg from "./Img/TodoForm.png";
 import TodoListImg from "./Img/TodoList.png";
+
 const Home = () => {
   return (
     <main>
       <section className={`${Styles.cloumns} ${Styles.section1}`}>
         <section>
-          <img
-            src="https://img.freepik.com/free-photo/female-hands-writing-plan-notepad-holding-coffee-tablet-money-wooden-background_1268-17465.jpg?w=2000"
-            alt=""
-          />
+          <img src={HomeImg} alt="Home Image" />
         </section>
 
         <section className={Styles.content_center}>
           <h1>About</h1>
-          <div className={Styles.AboutSection}>
-            <h3>Todo App design because:</h3>
+          <div className={Styles.about_section}>
+            <h4>Todo App design because:</h4>
             <ul>
               <li>
                 Write your goals for today or long time to remember or check
@@ -31,38 +31,96 @@ const Home = () => {
 
       <section className={Styles.section2}>
         <h1>How use it</h1>
+
         <section className={`${Styles.cloumns} ${Styles.row1}`}>
           <section className={Styles.content_center}>
-            <p>1. Place to write or edit your todo</p>
-            <p>2. Click or press enter for create your todo</p>
+            <p title="Place to write or edit your todo">1. Input todo</p>
+            <p title="Click or press enter for create your todo">2. Add todo</p>
           </section>
 
           <section className={Styles.content_center}>
             <img
-              className={Styles.todoFormImg}
+              className={Styles.todo_form_img}
               src={TodoFormImg}
-              alt="Todo Fotm"
+              alt="Todo Form"
+              useMap="#todo_form_map"
             />
+            <map name="todo_form_map">
+              <area
+                shape="circle"
+                coords="40,35,15"
+                alt="Input todo"
+                title="Input todo"
+              />
+
+              <area
+                shape="circle"
+                coords="160,75,15"
+                alt="Input todo"
+                title="Add todo"
+              />
+            </map>
           </section>
         </section>
 
         <section className={`${Styles.cloumns} ${Styles.row2}`}>
           <section className={Styles.content_center}>
             <img
-              className={Styles.todoListImg}
+              className={Styles.todo_list_img}
               src={TodoListImg}
               alt="Todo List"
+              useMap="#todo_list_map"
             />
+            <map name="todo_list_map">
+              <area
+                shape="circle"
+                coords="70,65,15"
+                alt="Input todo"
+                title="Search todo"
+              />
+
+              <area
+                shape="circle"
+                coords="345,65,15"
+                alt="Input todo"
+                title="Filter todos"
+              />
+
+              <area
+                shape="circle"
+                coords="430,150,15"
+                alt="Input todo"
+                title="Delete todo"
+              />
+
+              <area
+                shape="circle"
+                coords="465,115,15"
+                alt="Input todo"
+                title="Edit todo"
+              />
+
+              <area
+                shape="circle"
+                coords="505,150,15"
+                alt="Input todo"
+                title="Complete todo"
+              />
+            </map>
           </section>
 
           <section className={Styles.content_center}>
-            <p>3. Search todo</p>
-            <p>4. Filter todos: filter with complte or uncomplete todo</p>
-            <p>5. Delete todo</p>
-            <p>6. Edit todo: set your todo in input todo for update</p>
-            <p>
-              7. Change todo complete: green show complete todo and gray show
-              its not
+            <p title="Search todo with the todo title">3. Search todo</p>
+            <p title="Filter todos with complte or uncomplete todos">
+              4. Filter todos
+            </p>
+            <p title="Delete todo from your todos list">5. Delete todo</p>
+            <p title="Set your todo in input todo for update">6. Edit todo</p>
+            <p
+              title="Green show complete todo and gray show
+              its not"
+            >
+              7. Complete todo
             </p>
           </section>
         </section>

@@ -20,7 +20,6 @@ const About = () => {
           <p>Json server</p>
           <p>React Router</p>
           <p>Material design</p>
-          <p></p>
         </section>
 
         <section>
@@ -36,17 +35,20 @@ const About = () => {
         </section>
       </section>
 
+      <h1>About me</h1>
+
       <section className={Styles.section2}>
-        <h1>About me</h1>
-        <div className={Styles.section2Content}>
-          <img
-            src="https://wallpaperaccess.com/full/1489353.jpg"
-            alt="Omid Kianfar"
-          />
+        <img
+          src="https://wallpaperaccess.com/full/1489353.jpg"
+          alt="Omid Kianfar"
+        />
+
+        <section>
           <p>First Name: Omid</p>
           <p>Last Name: Kianfar</p>
-          <p>Education: Software engineer from P.I.A.U university</p>
-          <h3>contact:</h3>
+          <p>Education: Software engineer from P.I.A.U university.</p>
+
+          <h4>contact:</h4>
           <p>Gmail: omid.kianfar.990@gmail.com</p>
           <p>
             Github:
@@ -60,9 +62,10 @@ const About = () => {
               https://www.linkedin.com/in/omid-kianfar-248723232/
             </a>
           </p>
-        </div>
+        </section>
       </section>
-      <h4>Copyright: 2022/4/20</h4>
+
+      <h4>Copyright: 2022/20/4</h4>
     </main>
   );
 };

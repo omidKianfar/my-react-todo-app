@@ -1,21 +1,21 @@
 .cart {
-    width: 950px;
+    width: 95%;
     border-bottom: 3px solid var(--darkBlue);
     outline: none;
     height: 40px;
     display: flex;
     justify-content: space-between;
+    margin: 0 auto;
 
 }
 
 .cart p {
     padding: 15px;
-    font-size: 14px;
-    font-weight: 700;
+
 }
 
 .buttons {
-    width: 120px;
+    width: 12%;
     display: flex;
     justify-content: space-around;
     padding: 10px;
@@ -35,5 +35,5 @@
 }
 
 .iconUncomplete {
-    color: gray;
+    color: #aaa
 }

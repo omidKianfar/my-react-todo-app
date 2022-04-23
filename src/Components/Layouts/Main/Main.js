@@ -28,43 +28,43 @@ const Main = () => {
     <main>
       <section className={Styles.section1}>
         <h1>Todo App</h1>
-        <div>
-          <TodoForm />
-          <TodoValidation />
-        </div>
+        <TodoValidation />
+        <TodoForm />
       </section>
 
       <section className={Styles.section2}>
         <div className={Styles.menu}>
-          <div className={Styles.menuSearch}>
+          <div className={Styles.menu_search}>
             <SearchTodo />
           </div>
 
-          <div className={Styles.menuFilter}>
+          <div className={Styles.menu_filter}>
             <TodoFilterForm />
           </div>
         </div>
 
-        {searchShow ? (
-          <div className={Styles.note}>
-            <h1>Search Todos List</h1>
-            <SearchList />
-          </div>
-        ) : (
-          <div>
-            {show ? (
-              <div className={Styles.note}>
-                <h1>Todos List</h1>
-                <TodoList />
-              </div>
-            ) : (
-              <div className={Styles.note}>
-                <h1>Filter Todos List</h1>
-                <TodoFilterList />
-              </div>
-            )}
-          </div>
-        )}
+        <div className={Styles.note}>
+          {searchShow ? (
+            <>
+              <h1>Search Todos List</h1>
+              <SearchList />
+            </>
+          ) : (
+            <>
+              {show ? (
+                <>
+                  <h1>Todos List</h1>
+                  <TodoList />
+                </>
+              ) : (
+                <>
+                  <h1>Filter Todos List</h1>
+                  <TodoFilterList />
+                </>
+              )}
+            </>
+          )}
+        </div>
       </section>
     </main>
   );

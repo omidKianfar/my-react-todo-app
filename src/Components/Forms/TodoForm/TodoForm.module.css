@@ -1,34 +1,28 @@
-.todoForm {
-    display: grid;
-    gap: 20px;
-}
-
-.inputTodo {
-    width: 890px;
-    margin: 0 auto;
+.input_todo {
+    width: 82%;
     padding: 10px 30px;
 }
 
-.inputTodo:focus {
+.input_todo:focus {
     box-shadow: 0 0 4px 2px var(--lightBlue);
 }
 
-.addInputTodo {
-    width: 400px;
-    margin: 0 auto;
-    font-size: 18px;
-    font-weight: 700;
+.add_input_todo {
+    width: 30%;
     background-color: #ccc;
-
-
 }
 
-.addInputTodo:hover {
+.add_input_todo:hover {
     background-color: #CFF09E;
 }
 
-.addInputTodo:focus {
-    box-shadow: 2px 2px 4px 2px var(--lightBlue), -2px -2px 4px 2px var(--lightBlue);
-    width: 420px;
+.add_input_todo:focus {
+    width: 33%;
     height: 45px;
+    box-shadow: 2px 2px 4px 2px var(--lightBlue), -2px -2px 4px 2px var(--lightBlue);
+}
+
+:where(.input_todo, .add_input_todo) {
+    display: block;
+    margin: 10px auto;
 }

@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import PropTypes from "prop-types";
 
+import Styles from "./TodoFilterForm.module.css";
+
 import TodoContext from "../../../Hooks/TodoContext";
 import { ChangeFiltersDefault } from "../../../Tools/Filters/ChangeFiltersDefault";
-import Styles from "./TodoFilterForm.module.css";
 
 const TodoFilterForm = () => {
   const contextProps = useContext(TodoContext);
@@ -14,22 +15,16 @@ const TodoFilterForm = () => {
 
   return (
     <form
-      className={Styles.todoFilterForm}
+      className={Styles.todo_filter_form}
       onSubmit={() => filterTodos(contextProps)}
     >
-      <label
-        className={Styles.label}
-        htmlFor="selectFilter"
-        title="Filter todos with complete or uncomplete todo or all todos"
-      >
-        Choose filters
-      </label>
+      <label htmlFor="select_filter">Choose filters</label>
       <select
-        name="selectFilter"
+        name="select_filter"
         onChange={(e) => setSelectValue(e.target.value)}
         value={selectValue}
       >
-        <option value="All">all</option>
+        <option value="All">All</option>
         <option value="true">Completed</option>
         <option value="false">UnComplete</option>
       </select>

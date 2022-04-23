@@ -1,25 +1,21 @@
-.todoFilterForm {
-    display: grid;
-    grid-template-rows: auto auto;
-}
-
-.todoFilterForm label {
-    font-size: 16px;
-    font-weight: 700;
-    margin-left: 20px;
+.todo_filter_form label {
     margin: 5px 0 5px 20px;
 }
 
-.todoFilterForm select {
+.todo_filter_form select {
+    width: 100%;
     height: 40px;
-    width: 300px;
+    padding: 10px 30px;
+    border: 3px solid var(--darkBlue);
     border-radius: 10px;
     outline: none;
-    border: 3px solid var(--darkBlue);
-    font-size: 16px;
-    padding: 10px 20px;
 }
 
-.todoFilterForm select:focus {
+.todo_filter_form select:focus {
     box-shadow: 0 0 4px 2px var(--lightBlue);
+}
+
+:where(.todo_filter_form) select,
+label {
+    display: block;
 }

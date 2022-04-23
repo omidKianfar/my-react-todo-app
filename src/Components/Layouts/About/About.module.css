@@ -1,52 +1,40 @@
 .main {
-    width: 1200px;
+    width: 90%;
+    background-color: var(--light);
     margin: 15vh auto;
     padding: 0 10px;
-    background-color: var(--light);
     border: 3px solid var(--darkBlue);
-    border-radius: 250px;
-    font-size: 20px;
 }
 
 .main h1 {
-    background-color: var(--lightBlue);
-    width: 400px;
+    width: 40%;
     height: 50px;
-    border-radius: 5px 5px 50px 50px;
-    padding: 10px;
-    box-shadow: 0 4px 2px var(--darkBlue);
+    background-color: var(--lightBlue);
     margin: 0 auto 50px auto;
-    font-size: 24px;
+    padding: 10px;
+    border-radius: 5px 5px 50px 50px;
+    box-shadow: 0 4px 2px var(--darkBlue);
 }
 
 .main h4 {
     text-align: center;
-    margin: 50px;
-}
-
-.main a {
-    text-decoration: none;
-    color: var(--darkBlue);
+    margin: 20px;
 }
 
 .main a:hover {
-    color: var(--darkBlue);
+    color: var(--lightBlue);
     text-shadow: none;
 }
 
 .section1 {
-    width: 950px;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 50% 50%;
-    margin: 30px auto;
-    padding: 10px;
+    margin: 0 auto;
+    padding: 50px;
+
+    border-bottom: 3px solid var(--darkBlue);
 }
 
 .section1 section {
-    width: 100;
-    padding: 10% 20%;
-    margin: 0 auto;
+    align-self: start;
 }
 
 .section1 h3 {
@@ -61,24 +49,27 @@
     margin: 0 30px;
 }
 
-
-.section2 h1 {
-    width: 950px;
-    margin: 10px auto;
-    border-radius: 50px;
-    box-shadow: none;
-    border: 3px solid var(--darkBlue);
+.section2 img {
+    width: 250px;
+    height: 250px;
+    margin: 20px auto;
 }
 
-.section2Content {
+.section2 h4 {
+    text-align: start;
+}
+
+:where(.main, .section2 img) {
+    border-radius: 250px;
+}
+
+:where(.section1, .section2, .section1 section) {
+    width: 100%;
     display: grid;
     justify-content: center;
 }
 
-.section2Content img {
-    width: 250px;
-    height: 250px;
-    border-radius: 250px;
-    filter: drop-shadow(0px 2px 4px var(--darkBlue));
-    margin: 20px auto;
+:where(.section1, .section2) {
+    grid-template-columns: 50% 50%;
+    align-items: center;
 }
