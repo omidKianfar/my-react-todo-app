@@ -1,28 +1,60 @@
 .input_todo {
-    width: 82%;
-    padding: 10px 30px;
-}
-
-.input_todo:focus {
-    box-shadow: 0 0 4px 2px var(--lightBlue);
+    width: 91%;
 }
 
 .add_input_todo {
     width: 30%;
-    background-color: #ccc;
+    background-color: #E0E0E0;
 }
 
 .add_input_todo:hover {
-    background-color: #CFF09E;
+    background-color: #CCFF90;
+    cursor: pointer;
+
 }
 
 .add_input_todo:focus {
     width: 33%;
     height: 45px;
+    background-color: #B2FF59;
     box-shadow: 2px 2px 4px 2px var(--lightBlue), -2px -2px 4px 2px var(--lightBlue);
 }
 
 :where(.input_todo, .add_input_todo) {
     display: block;
     margin: 10px auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .input_todo {
+        width: 95%;
+    }
+
+    .add_input_todo {
+        width: 95%;
+    }
+
+    .add_input_todo:focus {
+        width: 93%;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    .input_todo {
+        width: 90%;
+    }
+
+    .add_input_todo {
+        width: 40%;
+        height: 50px;
+    }
+
+    .add_input_todo:focus {
+        width: 42%;
+        height: 52px;
+    }
+
+    :where(.input_todo, .add_input_todo) {
+        margin: 15px auto;
+    }
 }

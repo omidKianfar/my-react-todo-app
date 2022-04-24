@@ -4,7 +4,7 @@
     -moz-box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-size: 1rem;
+    font-size: 1em;
     font-weight: 700;
     font-family: 'Jua', sans-serif;
     text-decoration: none;
@@ -30,11 +30,6 @@ h4 {
 }
 
 input {
-    height: 40px;
-    outline: none;
-    font-size: 1em;
-    font-weight: 700;
-    border: 3px solid var(--darkBlue);
     border-radius: 50px;
 }
 
@@ -42,6 +37,54 @@ img {
     filter: drop-shadow(0px 2px 4px var(--darkBlue));
 }
 
-:is(h1, h3, h4, ul, p, a) {
+:where(input, select) {
+    height: 40px;
+    padding: 10px 30px;
+    outline: none;
+    border: 3px solid var(--darkBlue);
+}
+
+:where(input:focus, select:focus) {
+    box-shadow: 0 0 4px 2px var(--lightBlue);
+}
+
+:where(h1, h3, h4, ul, p, a) {
     color: var(--darkBlue);
+}
+
+
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 1.25em;
+    }
+
+    h3 {
+        font-size: 1em;
+    }
+
+    h4 {
+        font-size: 1em;
+    }
+
+    input {
+        padding: 10px 20px;
+    }
+
+    :where(input, select) {
+        height: 50px;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    input {
+        padding: 15px 20px;
+    }
+
+    :where(input, select, label, p) {
+        font-size: 1.15em;
+    }
+
+    :where(input, select, ) {
+        height: 50px;
+    }
 }

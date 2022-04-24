@@ -4,11 +4,6 @@
 
 .todo_search_form input {
     width: 100%;
-    padding: 10px 30px;
-}
-
-.todo_search_form input:focus {
-    box-shadow: 0 0 4px 2px var(--lightBlue);
 }
 
 :where(.todo_search_form) input,

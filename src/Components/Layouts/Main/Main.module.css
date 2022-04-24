@@ -1,17 +1,7 @@
 .section1 {
     height: 200px;
-    margin: 15vh auto 10px auto;
+    margin: 5px auto;
     border-radius: 50px;
-    position: relative;
-}
-
-.section1 h1 {
-    display: block;
-    width: 40%;
-    margin: 0 auto 30px auto;
-    padding: 10px;
-    border-radius: 5px 5px 50px 50px;
-
 }
 
 .section2 {
@@ -19,7 +9,6 @@
     padding: 20px;
     border-radius: 50px 50px 0 0;
     border-bottom: none;
-
 }
 
 .menu {
@@ -31,13 +20,7 @@
     margin: 25px auto 0 auto;
     padding: 0 10px 50px 10px;
     border-radius: 50px;
-}
-
-.note h1 {
-    width: 40%;
-    margin: 0 auto 25px auto;
-    padding: 10px;
-    border-radius: 5px 5px 50px 50px;
+    min-height: 500px;
 }
 
 :where(.section1, .section2) {
@@ -61,7 +44,11 @@
 }
 
 :where(.note, .section1) h1 {
+    width: 40%;
     height: 50px;
+    margin: 0 auto 30px auto;
+    padding: 10px;
+    border-radius: 5px 5px 50px 50px;
 }
 
 :where(.menu, .note) {
@@ -71,4 +58,67 @@
 :where(.menu_filter, .menu_search) {
     padding: 0 100px;
     margin: 25px;
+}
+
+@media only screen and (max-width: 600px) {
+    .section1 {
+        border-radius: 0;
+    }
+
+    .section2 {
+        margin: 0 auto;
+        padding: 0;
+        border-bottom: none;
+        border-radius: 0;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .note {
+        padding-bottom: 30px;
+        border-radius: 0;
+    }
+
+    :where(.section1, .section2) {
+        width: 100%;
+    }
+
+    :where(.section1, .section2, .note) {
+        border: none;
+    }
+
+    :where(.section1, .note) h1 {
+        width: 60%;
+        height: 40px;
+    }
+
+    :where(.menu, .note) {
+        width: 100%;
+    }
+
+    :where(.menu_filter, .menu_search) {
+        padding: 10px;
+        margin: 0;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    .section1 {
+        height: 220px;
+    }
+
+    .note {
+        padding-bottom: 30px;
+    }
+
+    :where(.section1, .section2) {
+        width: 98%;
+    }
+
+    :where(.menu_filter, .menu_search) {
+        margin: 0 10px;
+        padding: 10px;
+    }
 }

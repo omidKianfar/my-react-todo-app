@@ -1,13 +1,13 @@
 .validBox {
-    position: absolute;
-    left: 900px;
-    top: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 12vh auto 0 auto;
 }
 
 .warning {
-    width: 380px;
+    width: 500px;
     background: linear-gradient(to right, transparent, rgba(255, 255, 141, 0.8), transparent);
-    padding: 15px 20px;
+    padding: 10px;
     text-align: center;
 
 }
@@ -15,6 +15,6 @@
 .error {
     width: 350px;
     background: linear-gradient(to right, transparent, rgba(245, 124, 0, 0.4), transparent);
-    padding: 15px 20px;
+    padding: 10px;
     text-align: center;
 }

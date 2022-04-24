@@ -9,6 +9,7 @@
 }
 
 .about_section {
+    margin: 0 15px;
     padding: 15px 20px;
     border-radius: 10px;
     background-color: var(--light);
@@ -16,7 +17,7 @@
 }
 
 .section1 h1 {
-    margin: 20px 0;
+    margin: 20px auto;
 }
 
 .about_section ul {
@@ -24,7 +25,7 @@
 }
 
 .section2 h1 {
-    margin: 10vh 0;
+    margin: 10vh auto;
 }
 
 .section2 p {
@@ -62,4 +63,97 @@
 
 :where(.row1, .row2) {
     padding: 30px 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .cloumns {
+        display: block;
+    }
+
+    .section1 img {
+        margin-top: 8vh;
+        border-bottom-right-radius: 0;
+    }
+
+    .about_section {
+        width: 95%;
+        margin: 0 auto;
+        background-color: var(--light);
+        border: 3px solid var(--lightBlue);
+        border-radius: 10px;
+    }
+
+    .section1 h1 {
+        margin: 50px 0 20px 0;
+    }
+
+    .section2 h1 {
+        margin: 7vh 0;
+    }
+
+    .section2 p {
+        margin: 15px 10px;
+        padding: 0 5px;
+    }
+
+    .todo_list_img {
+        height: 150px;
+    }
+
+    :where(.cloumns, .content_center) {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    :where(.todo_list_img, .todo_form_img) {
+        width: 95%;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    .cloumns {
+        display: block;
+    }
+
+    .section1 img {
+        margin-top: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .about_section {
+        width: 85%;
+    }
+
+    .section1 h1 {
+        width: 100%;
+        margin: 70px 0 20px 0;
+    }
+
+    .section2 h1 {
+        margin: 5vh auto;
+    }
+
+    .section2 p {
+        margin: 10px;
+        padding: 15px 5px;
+    }
+
+    .todo_form_img {
+        height: 130px;
+    }
+
+    .todo_list_img {
+        height: 200px;
+    }
+
+    :where(.cloumns, .content_center) {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    :where(.todo_list_img, .todo_form_img) {
+        width: 80%;
+    }
 }

@@ -1,33 +1,30 @@
 .cart {
-    width: 95%;
-    border-bottom: 3px solid var(--darkBlue);
-    outline: none;
+    width: 97%;
     height: 40px;
-    display: flex;
-    justify-content: space-between;
     margin: 0 auto;
-
+    justify-content: space-between;
+    outline: none;
+    border-bottom: 3px solid var(--darkBlue);
 }
 
 .cart p {
-    padding: 15px;
-
+    width: 87%;
+    padding: 10px;
 }
 
 .buttons {
-    width: 12%;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
+    width: 10%;
+    justify-content: center;
     align-items: center;
+    padding: 5px;
+}
+
+.icon {
+    margin: 5px;
 }
 
 .icon:hover {
-    background-color: var(--light);
-    border: 1px solid var(--darkBlue);
-    padding: 2px;
-    border-radius: 50px;
-    zoom: 2;
+    cursor: pointer;
 }
 
 .iconComplete {
@@ -35,5 +32,61 @@
 }
 
 .iconUncomplete {
-    color: #aaa
+    color: #757575;
+}
+
+:where(.cart, .buttons) {
+    display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+    .cart {
+        display: block;
+        height: 190px;
+        margin: 10px auto;
+        border: 3px solid var(--darkBlue);
+        border-radius: 50px;
+        background-color: var(--light);
+    }
+
+    .cart p {
+        width: 95%;
+        height: 110px;
+        margin: 10px auto;
+        padding: 20px;
+        border-radius: 50px;
+        word-break: break-all;
+    }
+
+    .buttons {
+        width: 100%;
+        justify-content: space-around;
+        border-top: 3px solid var(--darkBlue);
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    .cart {
+        height: 110px;
+        margin: 10px auto;
+        justify-content: start;
+        background-color: var(--light);
+        border: 3px solid var(--darkBlue);
+        border-radius: 25px;
+    }
+
+    .cart p {
+        width: 70%;
+        height: 90px;
+        margin: 5px 10px;
+        padding: 15px 20px;
+        word-break: break-all;
+    }
+
+    .buttons {
+        width: 30%;
+        justify-content: space-around;
+        border-left: 3px solid var(--darkBlue);
+    }
+
 }

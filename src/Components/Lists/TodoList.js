@@ -26,13 +26,14 @@ const TodoList = () => {
                 <div className={Styles.buttons}>
                   <DeleteIcon
                     className={Styles.icon}
-                    sx={{ color: "#D84315" }}
+                    sx={{ color: "#D84315", fontSize: 30 }}
                     onClick={() => deleteTodo(todo, contextProps)}
                   />
 
                   <EditIcon
                     className={Styles.icon}
-                    sx={{ color: "#0288D1" }}
+                    fontSize="large"
+                    sx={{ color: "#0288D1", fontSize: 30 }}
                     onClick={() => editTodo(todo, contextProps)}
                   />
                   <CheckCircleIcon
@@ -41,6 +42,7 @@ const TodoList = () => {
                         ? `${Styles.iconComplete}`
                         : `${Styles.iconUncomplete}`
                     }`}
+                    sx={{ fontSize: 30 }}
                     onClick={() => changeCompleteTodo(todo, contextProps)}
                   />
                 </div>

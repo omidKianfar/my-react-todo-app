@@ -26,9 +26,9 @@ const Main = () => {
 
   return (
     <main>
+      <TodoValidation />
       <section className={Styles.section1}>
         <h1>Todo App</h1>
-        <TodoValidation />
         <TodoForm />
       </section>
 

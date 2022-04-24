@@ -10,16 +10,16 @@
 }
 
 .ul {
-    list-style-type: none;
-    position: absolute;
-    top: 5px;
     width: 500px;
     height: 50px;
+    position: absolute;
+    top: 5px;
+    padding: 10px;
     justify-content: space-around;
     align-items: center;
-    padding: 10px;
-    border-radius: 50px;
     background: var(--lightBlue);
+    list-style-type: none;
+    border-radius: 50px;
     box-shadow: 0 0 2px 2px var(--light), 0 0 2px 4px var(--darkBlue);
 }
 
@@ -41,4 +41,33 @@
 :where(.nav,
     .ul) {
     display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+    .header {
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+    }
+
+    .ul {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        border-radius: 0;
+        box-shadow: 0 2px 2px 2px var(--darkBlue);
+    }
+
+    .ul a {
+        font-size: 1.25em;
+    }
+
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    .header {
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+    }
 }
