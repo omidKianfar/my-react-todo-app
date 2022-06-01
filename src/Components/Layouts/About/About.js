@@ -1,5 +1,7 @@
 import Styles from "./About.module.css";
 
+import myImg from "./Img/Untitled-2-min.jpg";
+
 const About = () => {
   return (
     <main className={Styles.main}>
@@ -38,10 +40,7 @@ const About = () => {
       <h1>About me</h1>
 
       <section className={Styles.section2}>
-        <img
-          src="https://wallpaperaccess.com/full/1489353.jpg"
-          alt="Omid Kianfar"
-        />
+        <img src={myImg} alt="Omid Kianfar" />
 
         <section>
           <p>First Name: Omid</p>
@@ -49,17 +48,17 @@ const About = () => {
           <p>Education: Software engineer from P.I.A.U university.</p>
 
           <h4>contact:</h4>
-          <p>Gmail: omid.kianfar.990@gmail.com</p>
+          <p>Gmail: kianfar.omid.990@gmail.com</p>
           <p>
             Github:
-            <a href="https://github.com/omidKinfar">
-              www.github.com/omidKinfar
+            <a href="https://github.com/omidKianfar">
+              &nbsp;https://github.com/omidKianfar
             </a>
           </p>
           <p>
             Linkedin:
             <a href="https://www.linkedin.com/in/omid-kianfar-248723232/">
-              https://www.linkedin.com/in/omid-kianfar-248723232/
+              &nbsp;https://www.linkedin.com/in/omid-kianfar-248723232/
             </a>
           </p>
         </section>
