@@ -1,7 +1,7 @@
 # App Name
 Todo App
 # Description
-Todo App make with react.js and Css Module
+Todo App make with react.js
 
 Make with RWD for bellow 600px mobile size, bellow 900px tablet size and for desktop and laptop size
 # What does it do? 
@@ -15,34 +15,28 @@ Add, delete, edit, update, search, filter
   4. Flexbox
   5. Graid
   6. R.W.D
-  7. React 
-      1. ES6
-      2. Jsx
-      3. Condition
-      4. Event Handler
-      5. Modular 
-      6. Fragment
-      7. Proptype
-      8. Function components
-      9. Hooks:
-           useState,
-           useRef,
-           useEffect,
-           useContext
-  5. Uuid
-  6. Json server
-  7. Axios
-  8. React router
-  9. Material 
+  7. Material
       1. Color
       2. Icon
-  10. Google fonts
+  9. Google fonts
+  10. ES6
+  11. React
+      1. jsx
+      2. Event handler
+      3. Fragment
+      4. Proptype
+      5. Hooks
+      6. Ref
+      7. Context API
+  13. Uuid
+  14. Axios
+  15. Json server
+  16. React router
 
-
-# Install
+  # Install
   1. Clone project
    
-    https://github.com/omidKinfar/my-react-todo-app.git
+    git clone https://github.com/omidKinfar/my-react-todo-app.git
     
   2. Install dependencies
 
