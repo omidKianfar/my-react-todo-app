@@ -17,7 +17,8 @@ Add, delete, edit, update, search, filter
   6. R.W.D
   7. Material
       1. Color
-      2. Icon
+  8. MUI
+      1. Icons
   9. Google fonts
   10. ES6
   11. React
@@ -28,10 +29,10 @@ Add, delete, edit, update, search, filter
       5. Hooks
       6. Ref
       7. Context API
-  13. Uuid
-  14. Axios
-  15. Json server
-  16. React router
+  12. Uuid
+  13. Axios
+  14. Json server
+  15. React router
 
   # Install
   1. Clone project
